@@ -144,6 +144,7 @@ app.controller('GoodsCtrl', function($scope, $resource,$http, $filter,$localStor
             //alert(i);
             if(($scope.units[j].unit_id==item.unit_id)){
                 item.unit_id=$scope.units[j];
+                $scope.units.splice(j,1);
                 return false;
             }
         }
