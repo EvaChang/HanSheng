@@ -1,0 +1,70 @@
+<div class="wrapper-md" ng-controller="PurchaseListController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            历史进货
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-4">
+                <label class="col-sm-3 control-label">开始</label>
+                <date-directive  dt="sdate"></date-directive>
+            </div>
+            <div class="col-sm-4 ">
+                <label class="col-sm-3 control-label">结束</label>
+                <date-directive  dt="edate"></date-directive>
+            </div>
+            <div class="col-sm-4" >
+                <div class="input-group ">
+                    <input type="text" class="input-sm form-control" placeholder="输入供应商信息，商品信息，或备注信息进行搜索" ng-model="search_context">
+                    <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" ng-click="search()" type="button">搜索</button>
+          </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive" ng-if="data.total_count>0">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>供应商</th>
+                    <th>金额</th>
+                    <th>摘要</th>
+                    <th>操作者</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="list in data.lists">
+                    <td>{{list.time}}</td>
+                    <td>{{list.supply_name}}</td>
+                    <td>{{list.sum|currency:'￥'}}</td>
+                    <td>{{list.summary}}</td>
+                    <td>{{list.user}}</td>
+                    <td>
+                        <a ui-sref="app.purchase.detail({purchase_id:list.purchase_id,supply_name:list.supply_name,finish:list.finish})" class="active"> <i class="icon-magnifier" title="查看明细">明细</i>&nbsp;</a>
+                        <i class="glyphicon glyphicon-remove" ng-show="list.finish==0" ng-click="delete(list)">删除</i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">{{data.total_count}}条记录</small>
+                </div>
+                <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li ng-if="data.page_index>1"><a ng-click="pageQuery(data.page_index-1,search_context,sdate,edate)"><i class="fa fa-chevron-left"></i></a></li>
+                        <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a ng-click="pageQuery(page,search_context,sdate,edate)">{{page}}</a></li>
+                        <li ng-if="data.page_index<data.page_count"><a ng-click="pageQuery(data.page_index+1,search_context,sdate,edate)"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>

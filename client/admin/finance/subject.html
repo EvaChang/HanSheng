@@ -1,0 +1,48 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">会计科目管理</h1>
+</div>
+<div class="wrapper-md" ng-controller="SubjectController">
+    <div class="panel panel-default">
+        <div style="padding-left:2%;padding-top: 2%">
+            <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="subjectModel()"><i class="fa fa-plus"></i>新增会计科目</button>
+        </div>
+        <div class="table-responsive" ng-if="data.total_count>0">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>科目名称</th>
+                    <th>科目类型</th>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tr ng-repeat="data in data.subject">
+                    <td>{{$index+1}}</td>
+                    <td>{{data.subject_name}}</td>
+                    <td>{{data.subject_type==0?'收入':'支出'}}</td>
+                    <td>
+                        <i class="fa fa-edit" ng-click="subjectModel(data)">修改</i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">{{data.total_count}}条记录</small>
+                </div>
+                <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li ng-if="data.page_index>1"><a ng-click="query(data.page_index-1)"><i class="fa fa-chevron-left"></i></a></li>
+                        <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a ng-click="query(page)">{{page}}</a></li>
+                        <li ng-if="data.page_index<data.page_count"><a ng-click="query(data.page_index+1)"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>

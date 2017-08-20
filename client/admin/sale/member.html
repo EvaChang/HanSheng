@@ -1,0 +1,62 @@
+<div class="wrapper-md" ng-controller="MemberController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            客户列表
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-5 m-b-xs">
+                <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="memberDialog()"><i class="fa fa-plus"></i>新增</button>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input type="text" class="input-sm form-control" placeholder="输入客户编码或姓名进行搜索" ng-model="search_context">
+                    <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" ng-click="search()" type="button">Go!</button>
+          </span>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive" ng-if="data.total_count>0">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>客户姓名</th>
+                    <th>客户编码</th>
+                    <th>联系电话</th>
+                    <th>享受折扣</th>
+                    <th>修改</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="sdata in data.member">
+                    <td>{{sdata.member_id}}</td>
+                    <td>{{sdata.member_name}}</td>
+                    <td>{{sdata.member_sn}}</td>
+                    <td>{{sdata.member_phone}}</td>
+                    <td>{{sdata.vip|number:2}}</td>
+                    <td>
+                        <a ng-click="memberDialog(sdata)" class="active"><i class="fa fa-edit"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">{{data.total_count}}条记录</small>
+                </div>
+                <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li ng-if="data.page_index>1"><a ng-click="query(data.page_index-1,search_context)"><i class="fa fa-chevron-left"></i></a></li>
+                        <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a ng-click="query(page,search_context)">{{page}}</a></li>
+                        <li ng-if="data.page_index<data.page_count"><a ng-click="query(data.page_index+1,search_context)"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

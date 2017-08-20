@@ -1,0 +1,58 @@
+<div class="wrapper-md" ng-controller="SaleDetailController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>{{member_name}}明细单</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>产品名称</th>
+                    <th>数量</th>
+                    <th>价格</th>
+                    <th>金额</th>
+                    <th>操作{{details[$index].editing}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="detail in details">
+                    <td>{{$index+1}}</td>
+                    <td>{{detail.goods_name}}</td>
+                    <td>
+                        <p ng-hide="details[$index].editing">{{detail.number|number:2}}{{detail.unit}}</p>
+                        <input type="text"  ng-model="details[$index].number" ng-show="details[$index].editing" ng-change="cal($index)" >
+
+                    </td>
+                    <td>
+                        <p ng-hide="details[$index].editing">{{detail.price|currency:'￥'}}</p>
+                        <input type="text" ng-change="cal($index)" ng-show="details[$index].editing" ng-model="details[$index].price">
+                    </td>
+                    <td>
+                        <p ng-hide="details[$index].editing">{{detail.sum|currency:'￥'}}</p>
+                        <input type="number" onchange='cal_sum()'  ng-show="details[$index].editing" ng-model="details[$index].sum">
+                    </td>
+                    <td>
+                        <a ng-show="finish==0"> <i class="fa fa-edit" ng-click="edit($index)">{{details[$index].editing?'保存':'修改'}}</i>&nbsp;</a>
+                        <i class="glyphicon glyphicon-remove" ng-show="finish==0" ng-click="delete(detail)">删除</i>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2">合计数量：</td><td>{{ttl_number|number:1}}</td>
+                    <td >合计金额：</td>
+                    <td>{{ttl_sum|currency:'￥'}}</td><td></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="text-right" style="padding-right: 2%">
+        <button class="btn m-b-xs w-xs btn-primary"  ng-click="myBack()" >返回</button>
+        </div>
+
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>

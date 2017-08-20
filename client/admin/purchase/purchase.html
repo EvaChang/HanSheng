@@ -1,0 +1,91 @@
+<div class="wrapper-md" ng-controller="PurchaseController">
+<div class="panel panel-default" >
+        <div class="panel-heading">
+            新建进货单
+        </div>
+            <div class="row wrapper">
+            <label style="padding-left: 2%"> 供应商:</label>
+            <ui-select ng-model="data.supply" class="inline" style="width:160px" on-select="nextGood($item)" id="supply">
+                <ui-select-match >{{$select.selected.supply_name}}</ui-select-match>
+                <ui-select-choices repeat="supply in supplies"
+                                   refresh="query_supply($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="supply.supply_name"></div>
+                </ui-select-choices>
+            </ui-select>
+                <div class="col-sm-2 m-b-xs pull-right">
+                    <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="supplyDialog()"><i class="fa fa-plus"></i>新增供应商</button>
+                </div>
+        </div>
+        <div class=" table-responsive">
+            <table class="table table-striped b-t b-light" id="purchaseTable">
+                <thead>
+                <tr>
+                    <th>操作</th>
+                    <th>商品名称</th>
+                    <th>数量</th>
+                    <th>进货价格</th>
+                    <th>金额</th>
+                    <th>仓库</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows track by $index" on-finish-render>
+                    <td><i class="fa fa-trash-o text-error" ng-click="delRow($index)"></i>&nbsp;&nbsp;<i class="icon-plus text-info" ng-click="addRow()"></i></td>
+                    <td>
+                        <ui-select ng-model="rows[$index].good" on-select="getPrice($item,$index)" class="inline" style="width:160px">
+                        <ui-select-match >{{$select.selected.goods_name}}</ui-select-match>
+                        <ui-select-choices repeat="good in goods"
+                                           refresh="query_goods($select.search)"
+                                           refresh-delay="0" >
+                            <div ng-bind-html="good.goods_name"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    </td>
+                    <td><input type="number" ng-model="row.number" ng-change="cal($index)"  ng-keypress="next($event,$index)">&nbsp;{{row.good.unit}}</td>
+                    <td><input type="number" ng-model="row.price" ng-change="cal($index)" ></td>
+                    <td><input type="number" ng-model="row.sum" ng-change="cal_sum()" ></td>
+                    <td>
+                        <select ng-model="row.store_id" required >
+                            <option ng-repeat="store in stores" value="{{store.store_id}}">{{store.store_name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2" align="right">合计数量：</td><td>{{ttl_number|number:2}}</td>
+                    <td align="right">合计金额：</td><td>{{data.ttl_sum| currency:"￥ "}}元</td>
+                </tr>
+                </tfoot>
+            </table>
+            <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+                <div class="inline col-sm-3">
+                    <div class=" text-left">
+                        <label>付款银行：</label>
+                        <select ng-model="pay.bank">
+                            <option ng-repeat="bank in banks" value="{{bank.bank_id}}">{{bank.bank_name}}</option>
+                        </select>
+                    </div>
+                    <div class="text-left">
+                        <label>付款金额：</label>
+                        <input type="number" ng-model="pay.paid_sum" id="paid_sum" ng-keypress="next($event,-1)">
+                    </div>
+                </div>
+                <div class="col-sm-3" >
+                    <div>备注：</div>
+                    <textarea class="form-control" rows="2" ng-model="data.summary"></textarea>
+                </div><div class="inline col-sm-1"></div>
+               <div class="inline col-sm-5">
+                   <div> <input  type="checkbox" ng-model="data.on_way" >在途货物</div>
+                   <button class="btn m-b-xs w-xs btn-success" ng-click="save(1)" ng-disabled="check">{{!check?'保存进货':'保存中..'}}</button>
+                   <button class="btn m-b-xs w-xs btn-info" ng-click="save(-1)" ng-disabled="check">{{!check?'保存退货':'保存中..'}}</button>
+               </div>
+        </div>
+
+<p></p><br>
+</div>
+</div>
+<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->

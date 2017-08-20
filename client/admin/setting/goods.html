@@ -1,0 +1,167 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;
+  " ng-controller="GoodsCtrl">
+
+    <!-- column -->
+    <div class="col w b-r">
+        <div class="vbox">
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="list-group no-radius no-border no-bg m-b-none">
+                            <a class="list-group-item b-b" ng-class="{'focus': (filter == '')}" ng-click="selectCat({'cat_id':''})">种类列表</a>
+                            <a ng-repeat="item in cats" ng-dblclick="editItem(item)" class="list-group-item m-l hover-anchor b-a no-select" ng-class="{'focus m-l-none': item.selected}" ng-click="selectCat(item)">
+                                <span ng-click='deleteCat(item)' class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
+                                <span class="block m-l-n" ng-class="{'m-n': item.selected }">{{ item.cat_name ? item.cat_name : 'Untitled' }}</span>
+                                <input type="text" class="form-control pos-abt" ng-show="item.editing" ng-blur="doneEditing(item)" ng-model="item.cat_name" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper b-t">
+                <span tooltip="Double click to Edit" class="pull-right text-muted inline wrapper-xs m-r-sm"><i class="fa fa-question"></i></span>
+                <a href class="btn btn-sm btn-default" ng-click="createCat()"><i class="fa fa-plus fa-fw m-r-xs"></i> 新建种类</a>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+    <!-- column -->
+    <div class="col w-lg lter b-r">
+        <div class="vbox">
+            <div class="wrapper-xs b-b">
+                <div class="input-group m-b-xxs">
+                    <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+                    <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="在 {{cat.cat_name ? cat.cat_name : '所有种类'}} 中搜索" ng-model="query">
+                </div>
+            </div>
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="m-t-n-xxs">
+                            <div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
+                                <a ng-repeat="item in items | filter:{cat_id:filter} :(filter!='')| filter:query | orderBy:'goods_name'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)">
+                  <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }">
+                    {{ item.goods_name }}
+                  </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-center pos-abt w-full" style="top:50%;" ng-hide="(items | filter:{cat_id:filter} :(filter!='')| filter:query).length">没有产品</div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper b-t text-center">
+                <a href class="btn btn-sm btn-default btn-addon" ng-click="createItem()"><i class="fa fa-plus fa-fw m-r-xs"></i>新建产品</a>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+    <!-- column -->
+    <div class="col bg-white-only">
+        <div class="vbox">
+            <div class="wrapper-sm b-b">
+                <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+                    <a class="btn btn-xs btn-default pull-right" ng-hide="!item" ng-click="deleteItem(item)">&nbsp;<i class="fa fa-times"></i></a>
+                    <a class="btn btn-xs btn-default" ng-hide="item.editing" ng-click="editItem(item)">修改</a>
+                    <a class="btn btn-xs btn-default" ng-show="item.editing" ng-click="saveGoods(item)">保存</a>
+                </div>
+            </div>
+            <div class="row-row">
+                <div class="cell">
+                    <div class="cell-inner">
+                        <div class="wrapper-lg">
+                            <!-- fields -->
+                            <div class="form-horizontal " >
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">产品名称</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.goods_name}}</p>
+                                        <input type="text" class="form-control" ng-show="item.editing" ng-model="item.goods_name" ng-change="py(item)" required>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">产品编码</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.goods_sn}}</p>
+                                        <input type="text" class="form-control" ng-show="item.editing" ng-model="item.goods_sn" required>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">产品种类</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.cat_id.cat_name}}</p>
+                                        <ui-select ng-model="item.cat_id" theme="bootstrap" ng-show="item.editing" required>
+                                            <ui-select-match placeholder="选择搜索种类...">{{$select.selected.cat_name}}</ui-select-match>
+                                            <ui-select-choices  class="ui-select-choices" repeat="cat in cats |filter: $select.search" >
+                                                <div ng-bind-html="cat.cat_name"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">库存预警</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.warn_stock}}</p>
+                                        <input type="text" class="form-control" ng-show="item.editing" ng-model="item.warn_stock" >
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">库存单位</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.unit_id.unit_name}}</p>
+                                        <ui-select ng-model="item.unit_id" theme="bootstrap" ng-show="item.editing" required>
+                                            <ui-select-match placeholder="选择或搜索单位...">{{$select.selected.unit_name}}</ui-select-match>
+                                            <ui-select-choices  class="ui-select-choices" repeat="unit in units |filter: $select.search" >
+                                                <div ng-bind-html="unit.unit_name"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">售价/{{item.unit_id.unit_name}}</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.out_price}}</p>
+                                        <input  type="text" class="form-control" ng-show="item.editing" ng-model="item.out_price" >
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">是否促销</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.promote?'是':'否'}}</p>
+                                        <label class="i-checks" ng-show="item.editing">
+                                        <input  type="checkbox"   ng-model="item.promote" ng-checked="item.promote"><i></i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-sm" ng-hide="(item=='')">
+                                    <label class="col-sm-3 control-label">是否在售</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.is_show?'是':'否'}}</p>
+                                        <label class="i-checks" ng-show="item.editing">
+                                        <input  type="checkbox"  ng-model="item.is_show" ng-checked="item.is_show"><i></i>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / fields -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+</div>
+<!-- /hbox layout -->
+<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->

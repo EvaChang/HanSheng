@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h4>{{subject.subject_id==0?'新增科目':'修改科目'}}</h4>
+</div>
+<div class="panel-body">
+    <form role="form" ng-submit="save()" class="form-validation">
+        <div class="form-group" >
+            <label>科目名称：</label>
+            <input type="text" ng-model="subject.subject_name" required class="form-control">
+        </div>
+        <div class="form-group" >
+            <label>科目类型：</label>
+            <select ng-model="subject.subject_type"  class="form-control  inline">
+                <option value=0>收入类</option>
+                <option value=1>支出类</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success" ng-disabled="check" style="padding-right: 2%">{{!check?'保存':'保存中..'}}</button>
+        <a class="btn btn-primary" ng-click="cancel()" >取消</a>
+    </form>
+</div>

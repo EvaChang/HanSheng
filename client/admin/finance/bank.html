@@ -1,0 +1,38 @@
+<div class="wrapper-md" ng-controller="BankController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            银行列表
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-5 m-b-xs">
+                <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="bankAdd()"><i class="fa fa-plus"></i>新增银行</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>银行名称</th>
+                    <th>余额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="bank in banks">
+                    <td>{{$index+1}}</td>
+                    <td>{{bank.bank_name}}</td>
+                    <td>{{bank.balance|currency:'￥'}}</td>
+                    <td>
+                        <a ui-sref="app.finance.bdetail({bank_id:bank.bank_id,bank_name:bank.bank_name})" class="active"> <i class="icon-magnifier" title="查看明细">明细</i>&nbsp;</a>
+                        <i class=" icon-star" ng-show="bank.weight==0" ng-click="setWeight(bank)">设为默认</i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>

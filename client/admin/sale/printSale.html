@@ -1,0 +1,40 @@
+<div style="height: 10px;">
+    <OBJECT  ID="jatoolsPrinter" CLASSID="CLSID:B43D3361-D075-4BE2-87FE-057188254255"
+             codebase="jatoolsPrinter.cab#version=8,6,0,0"></OBJECT>&nbsp;
+</div>
+<div id='page1'>
+    <div style="text-align: center">
+        <h3 class="printFont">{{info.cname}}</h3>
+        <h5 class="printFont">销售单</h5>
+    </div>
+    <div class="printFont">客户：{{member_name}}<label style="float:right" class="printFont">销售日期：{{now|limitTo:10 }}</label></div>
+    <hr style=" height:2px;border:none;border-top:2px dashed;" />
+    <table style="width: 100%" class="printTable">
+        <thead>
+        <tr>
+            <th >产品名称</th>
+            <th >数量</th>
+            <th >价格</th>
+            <th >金额</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="credit in credits" on-finish-render >
+            <td class="printFont" >{{credit.goods_name}}</td>
+            <td>{{credit.number|number:1}}{{credit.unit}}</td>
+            <td>{{credit.price|currency:'￥':1}}</td>
+            <td>{{credit.sum|currency:'￥':0}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr style=" height:1px;border:none;border-top:1px dashed;" />
+    <div  class="printFont">合计数量：{{ttl.number|number:1}}</div>
+    <div class="printFont">合计金额：{{ttl.sum|currency:'￥'}}</div>
+    <hr style=" height:2px;border:none;border-top:2px dashed;" />
+    <div style="text-align: center">
+        <p class="printFont">谢谢您的惠顾，欢迎您再次光临！</p></div>
+    <div >
+        <p class="printFont">联系电话：{{info.ctel}}</p>
+        <p class="printFont">地址：{{info.cadd}}</p>
+    </div>
+</div>

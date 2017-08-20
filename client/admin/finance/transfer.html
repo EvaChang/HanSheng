@@ -1,0 +1,35 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">银行间转账</h1>
+</div>
+<div class="wrapper-md" ng-controller="TransferController">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form role="form" ng-submit="transfer()">
+                <div class="form-group">
+                    <label class="col-sm-1">转出银行:</label>
+                    <select ng-model="trans.outBank" class="form-control  inline" style="width: 50%">
+                        <option ng-repeat="bank in banks" value="{{bank.bank_id}}">{{bank.bank_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1">转入银行:</label>
+                    <select ng-model="trans.inBank" class="form-control  inline" style="width: 50%">
+                        <option ng-repeat="bank in banks" value="{{bank.bank_id}}">{{bank.bank_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1" >&nbsp;金&nbsp;额:</label>
+                    <input type="number" class="form-control inline " style="width: 50%" ng-model="trans.sum">
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1">&nbsp;备&nbsp;注:</label>
+                    <textarea class="form-control inline " style="width: 50%" ng-model="trans.summary"></textarea>
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary" ng-disabled="check">{{!check?'转账':'保存中..'}}</button>
+            </form>
+        </div>
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>

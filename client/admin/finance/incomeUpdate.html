@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4>{{account.account_id==0?'新增收入条目':' '+name+' 修改收入条目'}}</h4>
+</div>
+<div class="panel-body">
+    <form role="form" ng-submit="save()" class="form-validation">
+        <div class="form-group" >
+            <label class="col-sm-3">供应商或客户：</label>
+            <ui-select ng-model="account.people"  class="inline" style="width:200px" ng-show="account.account_id==0">
+                <ui-select-match >{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="people in peoples"
+                                   refresh="query_people($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="people.mytable=='member'?'客户：'+people.name:'供应商：'+people.name"></div>
+                </ui-select-choices>
+            </ui-select>
+            <div ng-hide="account.account_id==0" class="inline">{{name}}</div>
+        </div>
+        <div class="form-group" >
+            <label class="col-sm-3">科目名称：</label>
+            <select ng-model="account.subject" class="form-control inline " style="width: 50%">
+                <option ng-repeat="subject in subjects" value="{{subject.subject_id}}">{{subject.subject_name}}</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label class="col-sm-3">收入金额：</label>
+            <input type="number" ng-model="account.income" required style="width:70%"  class="form-control  inline">
+        </div>
+        <div class="form-group" ng-show="account.account_id==0">
+            <label class="col-sm-3">收款银行：</label>
+            <select ng-model="account.bank_id" class="form-control  inline" style="width: 50%">
+                <option value=0>未收款</option>
+                <option ng-repeat="bank in banks" value="{{bank.bank_id}}">{{bank.bank_name}}</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label class="col-sm-3">收入摘要：</label>
+            <textarea ng-model="account.summary" required style="width:70%"  class="form-control  inline"></textarea>
+        </div>
+        <div class="text-right" style="padding-right: 2%">
+        <button type="submit" class="btn  btn-success" ng-disabled="check">{{!check?'保存':'保存中..'}}</button>
+        <a class="btn  btn-primary" ng-click="cancel()" >取消</a>
+        </div>
+    </form>
+
+</div>

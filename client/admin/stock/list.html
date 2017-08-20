@@ -1,0 +1,63 @@
+<div class="wrapper-md" ng-controller="StockController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            库存列表
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <input type="text" class="input-sm form-control" placeholder="输入商品进行搜索" ng-model="search_context">
+                    <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" ng-click="search()" type="button">Go!</button>
+          </span>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive" ng-if="data.total_count>0">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>商品名称</th>
+                    <th>库存数量</th>
+                    <th>库存金额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="stock in data.stock">
+                    <td>{{$index+1}}</td>
+                    <td>{{stock.goods_name}}</td>
+                    <td>
+                        <p ng-hide="data.stock[$index].editing">{{stock.number}}{{stock.unit}}</p>
+                        <input type="text" ng-show="data.stock[$index].editing" ng-model="data.stock[$index].number" maxlength="7">
+                    </td>
+                    <td>{{stock.sum|currency:'￥'}}</td>
+                    <td>
+                        <a ng-click="editStock($index)" ng-hide="data.stock[$index].editing "><i class="fa fa-edit"></i></a>
+                        <a ng-click="updateStock($index)" ng-show="data.stock[$index].editing "><i class="fa fa-save">保存</i></a>&nbsp;
+                        <a ng-click="editStock($index)" ng-show="data.stock[$index].editing "><i class="fa fa-rotate-left">取消</i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">{{data.total_count}}条记录</small>
+                </div>
+                <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li ng-if="data.page_index>1"><a ng-click="query(data.page_index-1,search_context)"><i class="fa fa-chevron-left"></i></a></li>
+                        <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a ng-click="query(page,search_context)">{{page}}</a></li>
+                        <li ng-if="data.page_index<data.page_count"><a ng-click="query(data.page_index+1,search_context)"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>

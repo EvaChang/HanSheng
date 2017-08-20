@@ -1,0 +1,17 @@
+<div class="wrapper-md" ng-controller="UnitUpdateController">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-validation" ng-submit="updateUnit()">
+
+                <div class="form-group">
+                    <label>单位</label>
+                    <input type="text" class="form-control" ng-model="data.unit_name" required>
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-primary" ng-disabled="check">{{!check?'修改':'保存中，请稍后'}}</button>
+                <a  class="btn btn-sm btn-info " ng-click="closeThisDialog()">取消</a>
+            </form>
+        </div>
+    </div>
+
+</div>

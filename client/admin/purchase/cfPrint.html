@@ -1,0 +1,35 @@
+<div class=" table-responsive" style=" overflow-y: auto; max-height: 400px">
+    <table class="table table-striped b-t b-light">
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>产品名称</th>
+            <th>数量</th>
+            <th>价格</th>
+            <th>金额</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="credit in credits" title="此单总金额：{{credit.ttl|currency:'￥'}}">
+            <td>
+                <div ng-show="credit.time!=credits[$index-1].time">{{credit.time}}
+                    <div ng-show="credit.summary" style="color: #ff7f16">{{credit.summary}}</div>
+                </div>
+            </td>
+            <td>{{credit.goods_name}}{{(credit.type=='P'?'付款':'')}}
+                <div ng-show="credit.type=='CF'" ><a ng-click="cfPrint(credit.purchase_id)">结转余额</a></div>
+            </td>
+            <td>{{credit.number|number:2}}</td>
+            <td>{{credit.price|currency:'￥'}}</td>
+            <td>{{credit.type==('S'||'B')?(credit.sum|currency:'￥'):(credit.ttl|currency:'￥')}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+    <footer>
+        <div class="text-right" style="padding-right: 2%" ><button class="btn m-b-xs w-xs btn-primary" ng-click="cancel()">取消</button></div>
+
+    </footer>
+   </div>

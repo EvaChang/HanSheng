@@ -1,0 +1,48 @@
+<div class="wrapper-md" ng-controller="ScreditController">
+    <div class="panel panel-default" >
+        <div class="panel-heading">
+            应付管理
+        </div>
+        <div class="row wrapper">
+            <label style="padding-left: 2%"> 合计应付金额:</label>{{ttlCredit|currency:'￥'}}
+
+        </div>
+        <div class=" table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>供应商</th>
+                    <th>金额</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="list in data.credit">
+                    <td>{{$index+1}}</td>
+                    <td>{{list.supply_name}}</td>
+                    <td>{{list.sum|currency:'￥'}}</td>
+                    <td><i class=" icon-magnifier" ng-click="more(list)"></i></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-8 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">{{data.total_count}}条记录</small>
+                </div>
+                <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li ng-if="data.page_index>1"><a ng-click="query(data.page_index-1,search_context)"><i class="fa fa-chevron-left"></i></a></li>
+                        <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a ng-click="query(page,search_context)">{{page}}</a></li>
+                        <li ng-if="data.page_index<data.page_count"><a ng-click="query(data.page_index+1,search_context)"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- toaster directive -->
+    <toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+    <!-- / toaster directive -->
+</div>
