@@ -37,24 +37,27 @@ class Stock
             $rs=Db::table($stockTable)->field('number,sum')->find($_GET['stock_id']);
             return json_encode($rs);
         }
+        $where["goods_sn|goods_name"]=['like','%'.$_GET['search'].'%'];
         if($_GET['inorder']==1) $where['inorder']=['like','IN'.'%'];
         if($_GET['inorder']==0) $where['inorder']=0;
-        if($_GET['store_id']!=0) $where['store']=$_GET['store_id'];
+        if($_GET['store_id']!='0') $where['store_id']=$_GET['store_id'];
+        $order=$_GET['orderby']==''?'stock_id':$_GET['orderby'].',stock_id';
+        //print_r($where);
         $rs=Db::table($stockTable)->alias('a')
             ->join($goodsTable,'a.goods_id=b.goods_id')
-           //->fetchSql(true)
-            ->field('a.*,goods_name')
-            ->where('goods_sn|goods_name','like','%'.$_GET['search'].'%')
+           // ->fetchSql(true)
+            ->field('inorder,sum(a.sum) as sum,sum(a.number) as number,goods_name,a.goods_id')
             ->where($where)
-            ->group('goods_id,inorder')
+            ->group('a.goods_id,inorder')
+            ->order($order)
             ->page($_GET['page'].',10')
             ->select();
-       // echo $rs;
+        //echo $rs;
         $data['stock']=$rs;
         $count=Db::table($stockTable)->alias('a')
             ->join($goodsTable,'a.goods_id=b.goods_id')
-            ->where('goods_sn|goods_name','like','%'.$_GET['search'].'%')
             ->where($where)
+            ->group('a.goods_id,inorder')
             ->count();
         $data['total_count']=$count;
         return json_encode($data);

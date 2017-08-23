@@ -4,17 +4,26 @@
             库存列表
         </div>
         <div class="row wrapper">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <div class="btn-group" style="display: inline">
-                    <label class="btn btn-primary" ng-repeat="store in stores" ng-model="$parent.storeId" btn-radio="store.store_id">{{store.store_name}}</label>
+                    <label class="btn btn-primary" ng-click="search()" ng-repeat="store in stores" ng-model="$parent.storeId" btn-radio="store.store_id">{{store.store_name}}</label>
                 </div>
                 <div class="btn-group" style="display: inline">
-                    <label class="btn btn-success" ng-model="inorder" btn-radio="2" >全部商品</label>
-                    <label class="btn btn-success" ng-model="inorder" btn-radio="1">批次商品</label>
-                    <label class="btn btn-success" ng-model="inorder" btn-radio="0">普通商品</label>
+                    <label class="btn btn-success" ng-click="search()" ng-model="inorder" btn-radio="2" >全部商品</label>
+                    <label class="btn btn-success" ng-click="search()" ng-model="inorder" btn-radio="1">批次商品</label>
+                    <label class="btn btn-success" ng-click="search()" ng-model="inorder" btn-radio="0">普通商品</label>
+                </div>
+                <div >
+                    <select ng-model="order" class="btn btn-default" ng-change="search()">
+                        <option value="number">数量正序</option>
+                        <option value="number desc">数量倒序</option>
+                        <option value="sum">金额正序</option>
+                        <option value="sum desc">金额倒序</option>
+                    </select>
                 </div>
             </div>
-            <div class="col-sm-4 pull-right" >
+
+            <div class="col-sm-3 pull-right" >
                 <div class="input-group">
                     <input type="text" class="input-sm form-control" placeholder="输入商品进行搜索" ng-model="search_context">
                     <span class="input-group-btn">
@@ -29,6 +38,7 @@
                 <tr>
                     <th>编号</th>
                     <th>商品名称</th>
+                    <th>批次</th>
                     <th>库存数量</th>
                     <th>库存金额</th>
                     <th>操作</th>
@@ -38,15 +48,16 @@
                 <tr ng-repeat="stock in data.stock">
                     <td>{{$index+1}}</td>
                     <td>{{stock.goods_name}}</td>
+                    <td>{{stock.inorder==0?'':stock.inorder}}</td>
                     <td>
                         <p ng-hide="data.stock[$index].editing">{{stock.number}}{{stock.unit}}</p>
-                        <input type="text" ng-show="data.stock[$index].editing" ng-model="data.stock[$index].number" maxlength="7">
                     </td>
                     <td>{{stock.sum|currency:'￥'}}</td>
+
                     <td>
-                        <a ng-click="editStock($index)" ng-hide="data.stock[$index].editing "><i class="fa fa-edit"></i></a>
-                        <a ng-click="updateStock($index)" ng-show="data.stock[$index].editing "><i class="fa fa-save">保存</i></a>&nbsp;
-                        <a ng-click="editStock($index)" ng-show="data.stock[$index].editing "><i class="fa fa-rotate-left">取消</i></a>
+                        <a ng-click="delStock($index) "><i class="glyphicon glyphicon-remove"></i>删除</a>
+                        <a ng-click="updateStock($index)" ng-show="storeId!=0 "><i class="fa fa-save">报损溢</i></a>&nbsp;
+                        <a ng-click="stockDetail($index)" ng-show="data.inorder==0 "><i class="fa fa-rotate-left">明细</i></a>
                     </td>
                 </tr>
                 </tbody>

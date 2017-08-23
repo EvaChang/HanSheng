@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/6/21 0021.
  */
-app.controller('StockController',function ($scope,myhttp,$stateParams,toaster) {
+app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$timeout) {
     myhttp.getData('/index/setting/store','GET').then(function (res) {
         $scope.stores=res.data.store;
         $scope.stores.unshift({'store_id':0,'store_name':"全部仓库"});
@@ -10,14 +10,21 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster) {
         $scope.query($stateParams.page,$stateParams.search);
     });
     $scope.query = function(page,filter){
+        toaster.pop('info',"载入中...",'',5000);
         if(!page){
             page=1;
         }else{
             page=parseInt(page);
         }
         if(!filter) filter='';
-        myhttp.getData('/index/stock/stockList','GET',{page:page,search:filter,inorder:$scope.inorder,store_id:$scope.storeId})
-            .then(function (res) {
+        myhttp.getData('/index/stock/stockList','GET',{
+            page:page,
+            search:filter,
+            inorder:$scope.inorder,
+            store_id:$scope.storeId,
+            orderby:angular.isDefined($scope.order)?$scope.order:''
+        }).then(function (res) {
+                toaster.clear();
                 var data=res.data;
                 data.page_index = page;
                 data.pages = [];    //页签表
@@ -36,8 +43,11 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster) {
     };
 
     $scope.search=function () {
-        alert($scope.storeId);
-        //$scope.query(1,$scope.search_context);
+        //alert($scope.storeId);
+        $timeout(function () {
+            $scope.query(1,$scope.search_context);
+        },200,false);
+
     };
     $scope.editStock=function (index) {
         if($scope.data.stock[index].editing){

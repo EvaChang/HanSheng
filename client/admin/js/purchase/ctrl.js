@@ -319,7 +319,6 @@ app.controller('PurchaseListController',function ($scope,myhttp,$stateParams,$fi
     }
     //删除进货单
     $scope.delete=function (list) {
-        toaster.pop('info',"删除中请稍后...",'', 50000);
         var myscope = $rootScope.$new();
         myscope.info=list.supply_name+'的进货单';
         var modalInstance = $modal.open({
@@ -328,6 +327,7 @@ app.controller('PurchaseListController',function ($scope,myhttp,$stateParams,$fi
             scope:myscope
         });
         modalInstance.result.then(function () {
+           toaster.pop('info',"删除中请稍后...",'', 50000);
           myhttp.getData('/index/purchase/deletePurchase','POST',{purchase_id:list.purchase_id,info:list.supply_name+':'+list.sum})
               .then(function (res) {
                   toaster.clear();
@@ -345,6 +345,7 @@ app.controller('PurchaseListController',function ($scope,myhttp,$stateParams,$fi
 app.controller('ConfirmController', ['$scope', '$modalInstance', function($scope, $modalInstance){
     $scope.ok = function () {
         $modalInstance.close();
+       // toaster.pop("info","删除中,请稍等...",'',5000);
     };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -414,7 +415,6 @@ app.controller('PurchaseDetailController',function ($scope,myhttp,$stateParams,t
             scope:myscope
         });
         modalInstance.result.then(function () {
-            toaster.pop("info","删除中,请稍等...",'',5000);
             myhttp.getData('/index/purchase/purchaseDetailDelete','POST',
                 {purchase_detail_id:detail.purchase_detail_id,purchase_id:detail.purchase_id,goods_unit_id:detail.unit_id})
                 .then(function (res) {

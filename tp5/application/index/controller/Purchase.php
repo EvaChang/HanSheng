@@ -284,13 +284,14 @@ class Purchase
             if ($rs) return json_encode(['result' => 2]);
         }
         $purchaseDetailTable = $this->mdb . '.purchase_detail';
-        $data['inorder']=$inorder['inorder'];
+        $inorder=$inorder['inorder'];
         $rs=Db::table($purchaseDetailTable)->where(['purchase_id'=>$postData['purchase_id']])->select();
         $goodsTable=$this->mdb.'.goods';
         $stockTable=$this->mdb.'.stock';
         $unit_priceTable=$this->mdb.'.unit_price';
         $stock_detailTable=$this->mdb.'.stock_detail';
         foreach ($rs as $value){
+            $data['inorder']=$inorder;
             $data['goods_id']=$value['goods_id'];
             $data['store_id']=$value['store_id'];
             $stock=Db::table($stockTable)->where($data)->find();
@@ -309,6 +310,7 @@ class Purchase
             $data['remark']="删除进货单:".$good['goods_name']."-".$value['number'].'*'.$value['price'].'='.$value['sum'];
             $rs=Db::table($stock_detailTable)->insert($data);
             if($rs) $rs=Db::table($purchaseDetailTable)->delete($value['purchase_detail_id']);
+            unset($data);
         }
         $rs = Db::table($purchaseTable)
             ->delete($postData['purchase_id']);
