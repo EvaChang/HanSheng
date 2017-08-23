@@ -85,9 +85,13 @@ class Setting
     }
     public function goods(){
         $goodsTable=$this->mdb.'.goods';
-      //  $unitTable=$this->mdb.'.unit b';
         $rs = Db::table($goodsTable)
             ->select();
+        return json_encode($rs);
+    }
+    public function getUnitPrice(){
+        $unit_priceTable=$this->mdb.'.unit_price';
+        $rs=Db::table($unit_priceTable)->where($_GET)->select();
         return json_encode($rs);
     }
     public function goodsQuery(){
@@ -96,7 +100,7 @@ class Setting
             ->where(['is_show'=>1])
             ->where('goods_name|goods_sn','like','%'.$_GET['search'].'%')
            // ->whereOr('goods_sn','like','%'.$_GET['search'].'%')
-            ->field('goods_id,goods_name,unit,promote,warn_stock')
+            ->field('goods_id,goods_name,unit_id,promote,warn_stock')
             ->page(1,10)
             ->select();
         return json_encode($rs);
@@ -107,7 +111,7 @@ class Setting
         $data['goods_name']=$postData['goods_name'];
         $data['goods_sn']=$postData['goods_sn'];
         $data['warn_stock']=$postData['warn_stock'];
-        $data['unit']=$postData['unit'];
+        $data['unit_id']=$postData['unit_id']['unit_id'];
         $data['out_price']=$postData['out_price'];
         $data['promote']=$postData['promote']?1:0;
         $data['is_show']=$postData['is_show']?1:0;
@@ -115,18 +119,46 @@ class Setting
         $goodsTable=$this->mdb.'.goods';
         if($postData['goods_id']==0){
             $rs=Db::table($goodsTable)
-                ->insert($data);
+                ->insertGetId($data);
             $remark[0]='添加新产品'.$data['goods_name'];
+            $postData['goods_id']=$rs;
         }else{
             $remark=Db::table($goodsTable)->find($postData['goods_id']);
             $data['goods_id']=$postData['goods_id'];
             $rs=Db::table($goodsTable)
                 ->update($data);
         }
-        if($rs){
-            mylog($this->user,$this->mdb,'修改产品成功,old data:'.implode('|',$remark));
-            return json_encode(['result'=>$rs]);
+        if($rs) mylog($this->user,$this->mdb,'修改产品成功,old data:'.implode('|',$remark));
+        if(isset($postData['unit_price1'])){
+            $mData1['goods_id']=$postData['goods_id'];
+            $mData1['unit_id']=$postData['unit_price1']['unit_id']['unit_id'];
+            $mData1['fx']=$postData['unit_price1']['fx'];
+            $mData1['price']=$postData['unit_price1']['price'];
+            $unit_priceTable=$this->mdb.'.unit_price';
+            if(isset($postData['unit_price1']['unit_price_id'])){
+                $mData1['unit_price_id']=$postData['unit_price1']['unit_price_id'];
+                $rs=Db::table($unit_priceTable)->update($mData1);
+            }else{
+                $rs=Db::table($unit_priceTable)
+                    ->insert( $mData1);
+            }
         }
+        if(isset($postData['unit_price2'])){
+            $mData2['goods_id']=$postData['goods_id'];
+            $mData2['unit_id']=$postData['unit_price2']['unit_id']['unit_id'];
+            $mData2['fx']=$postData['unit_price2']['fx'];
+            $mData2['price']=$postData['unit_price2']['price'];
+            $unit_priceTable=$this->mdb.'.unit_price';
+            if(isset($postData['unit_price2']['unit_price_id'])){
+                $mData2['unit_price_id']=$postData['unit_price2']['unit_price_id'];
+                $rs=Db::table($unit_priceTable)->update($mData2);
+            }else{
+                $rs=Db::table($unit_priceTable)
+                    ->insert( $mData2);
+            }
+        }
+        if($rs) return json_encode(['result'=>1]);
+
     }
     public function pwdUpdate(){
         $postData=file_get_contents("php://input",true);

@@ -33,7 +33,7 @@ app.controller('SettingController', function($scope,$http, $resource,$localStora
     }
 });
 //种类产品设置
-app.controller('GoodsCtrl', function($scope, $resource,$http, $filter,$localStorage,toaster,mycache) {
+app.controller('GoodsCtrl', function($scope, $resource,$http, $filter,$localStorage,toaster,mycache,myhttp) {
     $scope.py=function (item) {
         item.goods_sn=makePy(item.goods_name).toString();
     };
@@ -140,14 +140,30 @@ app.controller('GoodsCtrl', function($scope, $resource,$http, $filter,$localStor
                 //return false;
             }
         }
-        for(var j=0;j<$scope.units.length;j++){
-            //alert(i);
-            if(($scope.units[j].unit_id==item.unit_id)){
-                item.unit_id=$scope.units[j];
-                $scope.units.splice(j,1);
-                return false;
+        myhttp.getData('/index/setting/getUnitPrice', 'GET', {'goods_id': item.goods_id}).then(function (result) {
+           if(result.data.length>0){
+               item.unit_price1=result.data[0];
+               item.unit_price1.fx=parseFloat(item.unit_price1.fx);
+           }
+            if(result.data.length>1){
+                item.unit_price2=result.data[1];
+                item.unit_price2.fx=parseFloat(item.unit_price2.fx);
             }
-        }
+            for(var j=0;j<$scope.units.length;j++){
+                //alert(i);
+                if(($scope.units[j].unit_id==item.unit_id)){
+                    item.unit_id=$scope.units[j];
+                   // return false;
+                }
+                if(angular.isDefined(item.unit_price1)&&item.unit_price1.unit_id==$scope.units[j].unit_id){
+                    item.unit_price1.unit_id=$scope.units[j];
+                }
+                if(angular.isDefined(item.unit_price2)&&item.unit_price2.unit_id==$scope.units[j].unit_id){
+                    item.unit_price2.unit_id=$scope.units[j];
+                }
+            }
+        });
+
     };
 
     $scope.deleteItem = function(item){
@@ -171,7 +187,34 @@ app.controller('GoodsCtrl', function($scope, $resource,$http, $filter,$localStor
     };
 
     $scope.saveGoods=function (item) {
-        if(item.goods_name&&item.goods_sn&&item.cat_id) {
+        var check;
+        if(angular.isDefined(item.unit_price1)&&angular.isDefined(item.unit_price1.fx))
+        {
+            if(angular.isUndefined(item.unit_price1.unit_id)||angular.isUndefined(item.unit_price1.unit_id||angular.isUndefined(item.unit_price1.fx))){
+                toaster.pop('info','请完善预置单位1和预置售价1的信息。');
+                return false;
+            }else if(item.unit_price1.unit_id==item.unit_id){
+                toaster.pop('info','请预置单位1不能和库存单位相同。');
+                return false;
+            }
+            check=true;
+
+        }
+        if(angular.isDefined(item.unit_price2))
+        {
+            if(angular.isUndefined(item.unit_price2.unit_id)||angular.isUndefined(item.unit_price2.unit_id||angular.isUndefined(item.unit_price2.fx))){
+                toaster.pop('info','请完善预置单位2和预置售价2的信息。');
+                return false;
+            }else if(item.unit_price2.unit_id==item.unit_id){
+                toaster.pop('info','请预置单位2不能和库存单位相同。');
+                return false;
+            } else if(check&&(item.unit_price2.unit_id==item.unit_price1.unit_id)){
+                toaster.pop('info','请预置单位2不能和预置单位1相同。');
+                return false;
+            }
+
+        }
+        if(item.goods_name&&item.goods_sn&&item.cat_id&&item.unit_id) {
             toaster.pop('wait', '产品保存中...', '', 50000);
             $http.defaults.headers.common['Authorization'] = $localStorage.auth;
             var $com = $resource($scope.app.host + "/index/setting/goodsUpdate");

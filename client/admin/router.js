@@ -213,20 +213,6 @@ app
                   label: '新进货单'
                  }
               })
-              .state('app.purchase.purchaseOrder',{
-                  url:'/purchaseOrder',
-                  templateUrl:'admin/purchase/purchaseOrder.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                          function( $ocLazyLoad ){
-                              return $ocLazyLoad.load('js/py.js');
-                          }]
-                  },
-                  ncyBreadcrumb: {
-                      parent:'app.dashboard',
-                      label: '按批次进货'
-                  }
-              })
               .state('app.purchase.list',{
                   url:'/list?page&search&sdate&edate',
                   templateUrl:'admin/purchase/list.html',

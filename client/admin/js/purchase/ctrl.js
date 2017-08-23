@@ -68,6 +68,8 @@ app.controller('SupplyUpdateController',function ($scope,myhttp) {
     }
 });
 app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$state,$timeout) {
+    $scope.inorder='';
+    $scope.inorderButton=true;
     $scope.supplies=[];
     $scope.pay={bank:{}};
     $scope.data={supply:[]};      //此处必须定义成数组，angularjs's bug
@@ -83,15 +85,14 @@ app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$st
         $timeout(function () {
         angular.element('#purchaseTable tbody tr td:eq(1) ').find('input').focus();
         },200,false);
-    }
-    myhttp.getData('/index/finance/bank','GET')
+    };
+    myhttp.getData('/index/purchase/purchaseInfo','GET')
         .then(function (res) {
-           $scope.banks=res.data;
-           $scope.pay.bank=$scope.banks[0].bank_id;
+            $scope.banks=res.data.bank;
+            $scope.pay.bank=$scope.banks[0].bank_id;
+            $scope.stores=res.data.store;
+            $scope.units=res.data.units;
         });
-    myhttp.getData('/index/setting/store','GET').then(function (result) {
-        $scope.stores=result.data.store;
-    });
     $scope.query_supply=function (search) {
         if(search!='')
             myhttp.getData('/index/purchase/supplySearch', 'GET', {page: 1, search: search})
@@ -157,7 +158,15 @@ app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$st
         angular.forEach($scope.rows,function (row) {
             if(isNaN(row.sum)) rowcheck=true;
             if(angular.isDefined(row.good))
-            detail.push(row);
+            detail.push({
+                'goods_id':row.good.goods_id,
+                'unit_check':row.good.unit_id.unit_id!=row.unit.unit_id,
+                'number':row.number,
+                'unit_id':row.unit.unit_id,
+                'store_id':row.store_id,
+                'price':row.price,
+                'sum':row.sum
+            });
         });
         if(rowcheck) {{toaster.pop('info','请完善进货信息!');return false;}}
         $scope.check=true;
@@ -166,7 +175,8 @@ app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$st
                 'data':$scope.data,
                 'pay':$scope.pay,
                 'detail':detail,
-                'back':back
+                'back':back,
+                'inorder':$scope.inorder
             })
             .then(function (res) {
                 $scope.check=false;
@@ -184,18 +194,48 @@ app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$st
                 }
             });
     }
+    $scope.getUnit=function (item,index) {
+          myhttp.getData('/index/purchase/getUnit', 'GET', {
+              'goods_id': item.goods_id,
+              'unit_id':item.unit_id,
+              'supply_id':angular.isDefined($scope.data.supply)?$scope.data.supply.supply_id:0,
+              'inorder':$scope.inorder
+          })
+          .then(function (res) {
+              if(res.data.check==false){
+                  if($scope.inorder=='') {
+                      alert(item.goods_name + "在库存中为批次商品,请生成批次号或删除该商品库存!");
+                  }else
+                      alert(item.goods_name + "在库存中为普通商品,请删除"+$scope.inorder+"批次号或删除该商品库存!");
+                  $scope.rows[index].good='';
+                  return false;
+              }
+              $scope.inorderButton=false;
+              $scope.units = res.data.unit;
+              for (var j = 0; j < $scope.units.length; j++) {
+                  if (($scope.units[j].unit_id == item.unit_id)) {
+                      item.unit_id = $scope.units[j];
+                      $scope.rows[index].unit = $scope.units[j];
+                  }
+              }
+              $scope.rows[index].price= parseFloat(res.data.result);
+              $scope.cal(index);
+              $scope.rows[index].store_id = $scope.stores[0].store_id;
+              angular.element('#purchaseTable tbody tr:eq('+index+') td:eq(2) ').find('input').focus();
+          });
+
+    };
     $scope.getPrice=function (item,index) {
         if($scope.data.supply!='') {
             myhttp.getData('/index/purchase/getPrice','GET',
                 {
-                    'goods_id':item.goods_id,
-                    'supply_id':$scope.data.supply.supply_id})
+                    'goods_id':$scope.rows[index].good.goods_id,
+                    'supply_id':$scope.data.supply.supply_id,
+                    'unit_id':item.unit_id
+                })
                 .then(function (res) {
-                    //alert(res.data.result);
-                     $scope.rows[index].price= parseFloat(res.data.result);
-                     $scope.rows[index].store_id=1;
-                     $scope.cal(index);
-                    angular.element('#purchaseTable tbody tr:eq('+index+') td:eq(2) ').find('input').focus();
+                    $scope.rows[index].price= parseFloat(res.data.result);
+                    $scope.cal(index);
                 });
         }
     }
@@ -209,6 +249,11 @@ app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$st
             if(index==0) $scope.save(1);
         }
         if(keycode==42) $timeout(function () {angular.element('#paid_sum').focus();},200,false);
+    }
+    $scope.addInorder=function () {
+        myhttp.getData('/index/purchase/getInOrder','GET').then(function (result) {
+            $scope.inorder=result.data.substr(1,result.data.length-2);
+        });
     }
 
 });
@@ -274,6 +319,7 @@ app.controller('PurchaseListController',function ($scope,myhttp,$stateParams,$fi
     }
     //删除进货单
     $scope.delete=function (list) {
+        toaster.pop('info',"删除中请稍后...",'', 50000);
         var myscope = $rootScope.$new();
         myscope.info=list.supply_name+'的进货单';
         var modalInstance = $modal.open({
@@ -284,9 +330,12 @@ app.controller('PurchaseListController',function ($scope,myhttp,$stateParams,$fi
         modalInstance.result.then(function () {
           myhttp.getData('/index/purchase/deletePurchase','POST',{purchase_id:list.purchase_id,info:list.supply_name+':'+list.sum})
               .then(function (res) {
+                  toaster.clear();
                    if(res.data.result==1){
                         toaster.pop('success','删除成功！');
                         $scope.query(1,$scope.search_context);
+                   }else if(res.data.result==2){
+                       toaster.pop('error','已经销售不能删除！');
                    }else
                        toaster.pop('error','删除失败！');
               });
@@ -317,6 +366,7 @@ app.controller('PurchaseDetailController',function ($scope,myhttp,$stateParams,t
         });
     $scope.edit=function (index) {
         if($scope.details[index].editing){
+            toaster.pop('info',"修改中,请稍等...",'',5000);
             if(isNaN($scope.details[index].sum)||($scope.details[index].sum==0)){toaster.pop('info','请完善修改信息！');return false;}
             var data={};
             data.purchase_detail_id=$scope.details[index].purchase_detail_id;
@@ -324,9 +374,11 @@ app.controller('PurchaseDetailController',function ($scope,myhttp,$stateParams,t
             data.number=$scope.details[index].number;
             data.sum=$scope.details[index].sum;
             data.purchase_id=$scope.details[index].purchase_id;
+            data.goods_unit_id=$scope.details[index].unit_id;
             myhttp.getData('/index/purchase/purchaseDetailUpdate','POST',data)
                 .then(function (res) {
                    // console.log(res.data);
+                    toaster.clear();
                     if(res.data.result==1){
                         toaster.pop('success','修改成功！');
                         $scope.details[index].editing=false;
@@ -362,11 +414,24 @@ app.controller('PurchaseDetailController',function ($scope,myhttp,$stateParams,t
             scope:myscope
         });
         modalInstance.result.then(function () {
+            toaster.pop("info","删除中,请稍等...",'',5000);
             myhttp.getData('/index/purchase/purchaseDetailDelete','POST',
-                {purchase_detail_id:detail.purchase_detail_id,purchase_id:detail.purchase_id})
+                {purchase_detail_id:detail.purchase_detail_id,purchase_id:detail.purchase_id,goods_unit_id:detail.unit_id})
                 .then(function (res) {
+                    toaster.clear();
                     if(res.data.result==1){
                         toaster.pop('success','删除成功！');
+                        myhttp.getData('/index/purchase/purchaseDetail','GET',{purchase_id:$stateParams.purchase_id})
+                            .then(function (res) {
+                                $scope.details=res.data;
+                                var sum=0,num=0;
+                                angular.forEach($scope.details,function (row) {
+                                    num+=Number(row.number);
+                                    sum+=row.sum;
+                                });
+                                $scope.ttl_number=num;
+                                $scope.ttl_sum=sum;
+                            });
                     }
                 })
         });
@@ -542,9 +607,4 @@ app.controller('remarkController',function ($modalInstance,$scope) {
     $scope.ok=function () {
         $modalInstance.close($scope.remark);
     }
-});
-app.controller('PurchaseOderController',function ($scope,myhttp) {
-    myhttp.getData('/index/purchase/getInOrder','GET').then(function (result) {
-        $scope.inorder=result.data;
-    });
 });

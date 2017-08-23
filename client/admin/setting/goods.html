@@ -137,9 +137,9 @@
                                     <label class="col-sm-3 control-label">预置单位1</label>
                                     <div class="col-sm-9" >
                                         <p class="form-control-static" style="display: inline;float:left" >1{{item.unit_id.unit_name}}=</p>
-                                        <p class="form-control-static" style="display: inline;float:left" ng-hide="item.editing">{{item.unit_price1.fx}}11{{item.unit_price1.unit_name}}</p>
-                                        <input type="number" class="form-control" ng-model="item.unit_price1.fx" ng-show="item.editing" style="width: 20%;display: inline;float:left" />
-                                        <ui-select ng-model="item.unit_price1" theme="bootstrap" ng-show="item.editing" style="width: 20%;display: inline;float:left" >
+                                        <p class="form-control-static" style="display: inline;float:left" ng-hide="item.editing">{{item.unit_price1.fx}}{{item.unit_price1.unit_id.unit_name}}</p>
+                                        <input type="number" class="form-control" ng-model="item.unit_price1.fx" ng-show="item.editing" style="width: 40%;display: inline;float:left" />
+                                        <ui-select ng-model="item.unit_price1.unit_id" theme="bootstrap" ng-show="item.editing" style="width: 40%;display: inline;float:left" >
                                             <ui-select-match >{{$select.selected.unit_name}}</ui-select-match>
                                             <ui-select-choices  class="ui-select-choices" repeat="unit in units |filter: $select.search" >
                                                 <div ng-bind-html="unit.unit_name"></div>
@@ -151,18 +151,18 @@
                                 <div class="form-group m-b-sm" ng-hide="(item=='')">
                                     <label class="col-sm-3 control-label">预置售价1</label>
                                     <div class="col-sm-9">
-                                        <p class="form-control-static" ng-hide="item.editing">{{item.unit_price1.price}}/{{item.unit_price1.unit_name}}</p>
-                                        <input  type="text" class="form-control" ng-show="item.editing" ng-model="item.unit_price1.price" style="width: 20%;display: inline"><label style="display: inline" ng-show="item.editing">/{{item.unit_price1.unit_name}}</label>
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.unit_price1.price}}元/{{item.unit_price1.unit_id.unit_name}}</p>
+                                        <input  type="text" class="form-control" ng-show="item.editing" ng-model="item.unit_price1.price" style="width: 20%;display: inline"><label style="display: inline" ng-show="item.editing">/{{item.unit_price1.unit_id.unit_name}}</label>
                                     </div>
                                 </div>
 
                                 <div class="form-group m-b-sm" ng-hide="(item=='')">
                                     <label class="col-sm-3 control-label">预置单位2</label>
                                     <div class="col-sm-9" >
-                                        <p class="form-control-static" style="display: inline;float:left" >2{{item.unit_id.unit_name}}=</p>
-                                        <p class="form-control-static" style="display: inline;float:left" ng-hide="item.editing">{{item.unit_price2.fx}}22{{item.unit_price2.unit_name}}</p>
-                                        <input type="number" class="form-control" ng-model="item.unit_price2.fx" ng-show="item.editing" style="width: 20%;display: inline;float:left" />
-                                        <ui-select ng-model="item.unit_price2" theme="bootstrap" ng-show="item.editing" style="width: 20%;display: inline;float:left" >
+                                        <p class="form-control-static" style="display: inline;float:left" >1{{item.unit_id.unit_name}}=</p>
+                                        <p class="form-control-static" style="display: inline;float:left" ng-hide="item.editing">{{item.unit_price2.fx}}{{item.unit_price2.unit_id.unit_name}}</p>
+                                        <input type="number" class="form-control" ng-model="item.unit_price2.fx" ng-show="item.editing" style="width: 40%;display: inline;float:left" />
+                                        <ui-select ng-model="item.unit_price2.unit_id" theme="bootstrap" ng-show="item.editing" style="width: 40%;display: inline;float:left" >
                                             <ui-select-match >{{$select.selected.unit_name}}</ui-select-match>
                                             <ui-select-choices  class="ui-select-choices" repeat="unit in units |filter: $select.search" >
                                                 <div ng-bind-html="unit.unit_name"></div>
@@ -174,8 +174,8 @@
                                 <div class="form-group m-b-sm" ng-hide="(item=='')">
                                     <label class="col-sm-3 control-label">预置售价2</label>
                                     <div class="col-sm-9">
-                                        <p class="form-control-static" ng-hide="item.editing">{{item.unit_price2.price}}/{{item.unit_price2.unit_name}}</p>
-                                        <input  type="text" class="form-control" ng-show="item.editing" ng-model="item.unit_price2.price" style="width: 20%;display: inline"><label style="display: inline" ng-show="item.editing">/{{item.unit_price2.unit_name}}</label>
+                                        <p class="form-control-static" ng-hide="item.editing">{{item.unit_price2.price}}元/{{item.unit_price2.unit_id.unit_name}}</p>
+                                        <input  type="text" class="form-control" ng-show="item.editing" ng-model="item.unit_price2.price" style="width: 20%;display: inline"><label style="display: inline" ng-show="item.editing">/{{item.unit_price2.unit_id.unit_name}}</label>
                                     </div>
                                 </div>
 

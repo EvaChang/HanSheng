@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-4" >
                 <div class="input-group ">
-                    <input type="text" class="input-sm form-control" placeholder="输入供应商信息，商品信息，或备注信息进行搜索" ng-model="search_context">
+                    <input type="text" class="input-sm form-control" placeholder="输入商品|供应商，或备注信息进行搜索" ng-model="search_context">
                     <span class="input-group-btn">
             <button class="btn btn-sm btn-default" ng-click="search()" type="button">搜索</button>
           </span>
@@ -28,6 +28,7 @@
                 <tr>
                     <th>时间</th>
                     <th>供应商</th>
+                    <th>批次</th>
                     <th>金额</th>
                     <th>摘要</th>
                     <th>操作者</th>
@@ -38,12 +39,14 @@
                 <tr ng-repeat="list in data.lists">
                     <td>{{list.time}}</td>
                     <td>{{list.supply_name}}</td>
+                    <td>{{list.inorder==0?'':list.inorder}}</td>
                     <td>{{list.sum|currency:'￥'}}</td>
                     <td>{{list.summary}}</td>
                     <td>{{list.user}}</td>
                     <td>
                         <a ui-sref="app.purchase.detail({purchase_id:list.purchase_id,supply_name:list.supply_name,finish:list.finish})" class="active"> <i class="icon-magnifier" title="查看明细">明细</i>&nbsp;</a>
-                        <i class="glyphicon glyphicon-remove" ng-show="list.finish==0" ng-click="delete(list)">删除</i>
+                        <i class="glyphicon glyphicon-remove" ng-show="list.finish==0" ng-click="delete(list)"><a>删除</a></i>
+                        <i class="glyphicon glyphicon-plus"><a>录入费用</a></i>
                     </td>
                 </tr>
                 </tbody>

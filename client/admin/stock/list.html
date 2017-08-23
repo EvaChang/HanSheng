@@ -4,7 +4,17 @@
             库存列表
         </div>
         <div class="row wrapper">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
+                <div class="btn-group" style="display: inline">
+                    <label class="btn btn-primary" ng-repeat="store in stores" ng-model="$parent.storeId" btn-radio="store.store_id">{{store.store_name}}</label>
+                </div>
+                <div class="btn-group" style="display: inline">
+                    <label class="btn btn-success" ng-model="inorder" btn-radio="2" >全部商品</label>
+                    <label class="btn btn-success" ng-model="inorder" btn-radio="1">批次商品</label>
+                    <label class="btn btn-success" ng-model="inorder" btn-radio="0">普通商品</label>
+                </div>
+            </div>
+            <div class="col-sm-4 pull-right" >
                 <div class="input-group">
                     <input type="text" class="input-sm form-control" placeholder="输入商品进行搜索" ng-model="search_context">
                     <span class="input-group-btn">

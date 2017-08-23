@@ -2,8 +2,10 @@
 <div class="panel panel-default" >
         <div class="panel-heading">
             新建进货单
+            <label style="color: orangered" ng-hide="inorder==''">批次:{{inorder}}</label>
+            <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-show="(inorder=='')&&(inorderButton)" ng-click="addInorder()"><i class="fa fa-plus"></i>按批次进货</button>
         </div>
-            <div class="row wrapper">
+        <div class="row wrapper">
             <label style="padding-left: 2%"> 供应商:</label>
             <ui-select ng-model="data.supply" class="inline" style="width:160px" on-select="nextGood($item)" id="supply">
                 <ui-select-match >{{$select.selected.supply_name}}</ui-select-match>
@@ -13,6 +15,7 @@
                     <div ng-bind-html="supply.supply_name"></div>
                 </ui-select-choices>
             </ui-select>
+
                 <div class="col-sm-2 m-b-xs pull-right">
                     <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="supplyDialog()"><i class="fa fa-plus"></i>新增供应商</button>
                 </div>
@@ -24,6 +27,7 @@
                     <th>操作</th>
                     <th>商品名称</th>
                     <th>数量</th>
+                    <th>单位</th>
                     <th>进货价格</th>
                     <th>金额</th>
                     <th>仓库</th>
@@ -33,7 +37,7 @@
                 <tr ng-repeat="row in rows track by $index" on-finish-render>
                     <td><i class="fa fa-trash-o text-error" ng-click="delRow($index)"></i>&nbsp;&nbsp;<i class="icon-plus text-info" ng-click="addRow()"></i></td>
                     <td>
-                        <ui-select ng-model="rows[$index].good" on-select="getPrice($item,$index)" class="inline" style="width:160px">
+                        <ui-select ng-model="rows[$index].good" on-select="getUnit($item,$index)"  class="inline" style="width:160px">
                         <ui-select-match >{{$select.selected.goods_name}}</ui-select-match>
                         <ui-select-choices repeat="good in goods"
                                            refresh="query_goods($select.search)"
@@ -41,8 +45,16 @@
                             <div ng-bind-html="good.goods_name"></div>
                         </ui-select-choices>
                     </ui-select>
-                    </td>
+
                     <td><input type="number" ng-model="row.number" ng-change="cal($index)"  ng-keypress="next($event,$index)">&nbsp;{{row.good.unit}}</td>
+                    <td>
+                        <ui-select ng-model="rows[$index].unit" on-select="getPrice($item,$index)" class="inline" style="width:80px">
+                            <ui-select-match >{{$select.selected.unit_name}}</ui-select-match>
+                            <ui-select-choices repeat="unit in units">
+                                <div ng-bind-html="unit.unit_name"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </td>
                     <td><input type="number" ng-model="row.price" ng-change="cal($index)" ></td>
                     <td><input type="number" ng-model="row.sum" ng-change="cal_sum()" ></td>
                     <td>

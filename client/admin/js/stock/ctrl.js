@@ -2,6 +2,13 @@
  * Created by Administrator on 2017/6/21 0021.
  */
 app.controller('StockController',function ($scope,myhttp,$stateParams,toaster) {
+    myhttp.getData('/index/setting/store','GET').then(function (res) {
+        $scope.stores=res.data.store;
+        $scope.stores.unshift({'store_id':0,'store_name':"全部仓库"});
+        $scope.storeId=0;
+        $scope.inorder=2;
+        $scope.query($stateParams.page,$stateParams.search);
+    });
     $scope.query = function(page,filter){
         if(!page){
             page=1;
@@ -9,7 +16,7 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster) {
             page=parseInt(page);
         }
         if(!filter) filter='';
-        myhttp.getData('/index/stock/stockList','GET',{page:page,search:filter})
+        myhttp.getData('/index/stock/stockList','GET',{page:page,search:filter,inorder:$scope.inorder,store_id:$scope.storeId})
             .then(function (res) {
                 var data=res.data;
                 data.page_index = page;
@@ -27,9 +34,10 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster) {
                 backup=data.stock;
             });
     };
-    $scope.query($stateParams.page,$stateParams.search);
+
     $scope.search=function () {
-        $scope.query(1,$scope.search_context);
+        alert($scope.storeId);
+        //$scope.query(1,$scope.search_context);
     };
     $scope.editStock=function (index) {
         if($scope.data.stock[index].editing){
