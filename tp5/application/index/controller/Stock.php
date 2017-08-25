@@ -42,11 +42,12 @@ class Stock
         if($_GET['inorder']==0) $where['inorder']=0;
         if($_GET['store_id']!='0') $where['store_id']=$_GET['store_id'];
         $order=$_GET['orderby']==''?'stock_id':$_GET['orderby'].',stock_id';
-        //print_r($where);
+        $unitTable=$this->mdb.'.unit c';
         $rs=Db::table($stockTable)->alias('a')
             ->join($goodsTable,'a.goods_id=b.goods_id')
+            ->join($unitTable,'b.unit_id=c.unit_id')
            // ->fetchSql(true)
-            ->field('inorder,sum(a.sum) as sum,sum(a.number) as number,goods_name,a.goods_id')
+            ->field('inorder,sum(a.sum) as sum,sum(a.number) as number,goods_name,a.goods_id,unit_name')
             ->where($where)
             ->group('a.goods_id,inorder')
             ->order($order)
@@ -90,56 +91,58 @@ class Stock
 
     }
 
-    public function stockUpdate(){
+    public function updateStock(){
         $postData=file_get_contents("php://input",true);
         $postData=json_decode($postData,true);
-        $stockTable=$this->mdb.'.stock';
-        $stock=Db::table($stockTable)->find($postData['stock_id']);
-        $goodsTable=$this->mdb.'.goods';
-        $goods=Db::table($goodsTable)->field('goods_name')->find($stock['goods_id']);
-        $data['stock_id']=$postData['stock_id'];
-        $data['number']=$postData['number'];
-        if($stock['number']>0) {
-            $data['sum'] = $stock['sum'] / $stock['number']*$postData['number'];
-            }else{
+        $updateTime=date('Y-m-d H:i:s');
+        $data['time']=$updateTime;
+        $data['user']=$this->user;
+        $data['remark']=($postData['Dstock']>0?"报溢：":'报损：').$postData['stock']['goods_name'];
+        $data['goods_id']=$postData['stock']['goods_id'];
+        $data['store_id']=$postData['store_id'];
+        $data['inorder']=$postData['stock']['inorder'];
+        $data['Dstock']=$postData['Dstock'];
+        $data['stock']=$postData['stock']['number']+$postData['Dstock'];
+        if($postData['stock']['number']>0){
+            $data['Dsum'] = $postData['stock']['sum'] / $postData['stock']['number']*$postData['Dstock'];
+        }else{
             $purchaseDetail=$this->mdb.'.purchase_detail';
             $price=Db::table($purchaseDetail)
                 ->field('price')
-                ->where(['goods_id'=>$stock['goods_id']])
+                ->where(['goods_id'=>$postData['stock']['goods_id']])
                 ->order('purchase_detail_id desc')
                 ->find();
             if(!$price){
                 $saleDetail=$this->mdb.'.sale_detail';
                 $price=Db::table($saleDetail)
                     ->field('price')
-                    ->where(['goods_id'=>$stock['goods_id']])
+                    ->where(['goods_id'=>$postData['stock']['goods_id']])
                     ->order('sale_detail_id desc')
                     ->find();
             }
-            $data['sum']=$postData['number']*$price['price'];
+            $data['Dsum']=$postData['Dstock']*$price['price'];
         }
-        $adata['time']=date("Y-m-d H:i:s");
+        $data['sum']=$postData['stock']['sum']+$data['Dsum'];
+        $stockDetailTable=$this->mdb.'.stock_detail';
+        $rs=Db::table($stockDetailTable)->insert($data);
+        if(!$rs) return json_encode(['result'=>2]);
+        $adata['time']=$updateTime;
         $adata['user']=$this->user;
-        $adata['goods_id']=$stock['goods_id'];
-        if($stock['number']>$postData['number']){      //报损
+        $adata['goods_id']=$postData['stock']['goods_id'];
+        if($data['Dstock']<0){      //报损
             $adata['subject']=1;
-            $adata['cost']=$stock['sum']-$data['sum'];
-            $remark="商品报损:".$goods['goods_name']."，数量：".$stock['number']."=>".$postData['number'];
+            $adata['cost']=$data['Dsum'];
+            $adata['summary']=$remark="商品报损:".$postData['stock']['goods_name']."，数量：".$postData['Dstock'];
         }else{                                          //报溢
             $adata['subject']=2;
-            $adata['income']=$data['sum']-$stock['sum'];
-            $remark="商品报溢:".$goods['goods_name']."，数量：".$stock['number']."=>".$postData['number'];
+            $adata['income']=$data['Dsum'];
+            $adata['summary']=$remark="商品报溢:".$postData['stock']['goods_name']."，数量：".$postData['Dstock'];
         }
-        $rs=Db::table($stockTable)->update($data);
-        $result['result']=0;
-        if(!$rs) return json_encode($result);
         $account=$this->mdb.'.account';
         $rs=Db::table($account)->insert($adata);
-        if(!$rs) return json_encode($result);
+        if(!$rs) return json_encode(['result'=>3]);
         mylog($this->user,$this->mdb,$remark);
-        $result['newStock']=$data;
-        $result['result']=1;
-        return  json_encode($result);
+        return  json_encode(['result'=>1]);
     }
 
 }

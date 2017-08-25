@@ -50,7 +50,7 @@
                     <td>{{stock.goods_name}}</td>
                     <td>{{stock.inorder==0?'':stock.inorder}}</td>
                     <td>
-                        <p ng-hide="data.stock[$index].editing">{{stock.number}}{{stock.unit}}</p>
+                        <p ng-hide="data.stock[$index].editing">{{stock.number}}{{stock.unit_name}}</p>
                     </td>
                     <td>{{stock.sum|currency:'￥'}}</td>
 

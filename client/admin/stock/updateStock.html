@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4>报损报溢：{{info}}</h4>
+</div>
+<div class="panel-body">
+    <div class="form-group" >
+    <label>数量：</label><input type="number" ng-model="Dstock"/>
+        </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+    <button class="btn btn-success" ng-click="updateStock(1)">报溢</button>
+    <button class="btn btn-primary" ng-click="updateStock(-1)">报损</button>
+</div>

@@ -7,10 +7,10 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
         $scope.stores.unshift({'store_id':0,'store_name':"全部仓库"});
         $scope.storeId=0;
         $scope.inorder=2;
+        toaster.pop('info',"载入中...",'',5000);
         $scope.query($stateParams.page,$stateParams.search);
     });
     $scope.query = function(page,filter){
-        toaster.pop('info',"载入中...",'',5000);
         if(!page){
             page=1;
         }else{
@@ -43,7 +43,7 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
     };
 
     $scope.search=function () {
-        //alert($scope.storeId);
+        toaster.pop('info',"载入中...",'',5000);
         $timeout(function () {
             $scope.query(1,$scope.search_context);
         },200,false);
@@ -74,7 +74,7 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
                 .then(function(res){
                     toaster.clear();
                     if(res.data.result==1){
-                        toaster.pop('success','删除成功！');
+                       // toaster.pop('success','删除成功！');
                         $scope.query(1,$scope.search_context);
                     }else
                         toaster.pop('error','删除失败！');
@@ -85,10 +85,41 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
     };
 
     $scope.updateStock=function (stock) {
+        var myscope = $rootScope.$new();
+        myscope.info=stock.goods_name;
+        var modalInstance = $modal.open({
+            templateUrl: 'admin/stock/updateStock.html',
+            controller: 'ConfirmController',
+            size:'sm',
+            scope:myscope
+        });
+        modalInstance.result.then(function (res) {
+            toaster.pop('info','修改中...','',5000);
+            myhttp.getData('/index/stock/updateStock','POST',{
+                Dstock:res,
+                stock:stock,
+                store_id:$scope.storeId
+            }).then(function (res) {
+                toaster.clear();
+                if(res.data.result==1){
+                   // toaster.pop('success','修改成功！');
+                    $scope.query(1,$scope.search_context);
+                }else{
+                    toaster.pop('error','修改失败！');
+                }
+
+            });
+        });
 
     };
     $scope.stockDetail=function(stock){
-
+        var myscope = $rootScope.$new();
+        myscope.stock=stock;
+        var modalInstance = $modal.open({
+            templateUrl: 'admin/stock/stockDetail.html',
+            controller: 'stockDetailController',
+            scope:myscope
+        });
     };
     $scope.exchange=function(stock){
 
@@ -105,6 +136,15 @@ app.controller('ConfirmController', ['$scope', '$modalInstance', function($scope
         $modalInstance.close();
     };
     $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+    $scope.updateStock=function (fx) {
+        $modalInstance.close(fx*$scope.Dstock);
+    }
+}]);
+app.controller('stockDetailController',['$scope', '$modalInstance', function($scope, $modalInstance){
+    alert($scope.stock.goods_name);
+    $scope.ok = function () {
         $modalInstance.dismiss('cancel');
     };
 }]);
