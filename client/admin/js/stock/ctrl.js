@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/6/21 0021.
  */
-app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$timeout) {
+app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$timeout,$rootScope,$modal) {
     myhttp.getData('/index/setting/store','GET').then(function (res) {
         $scope.stores=res.data.store;
         $scope.stores.unshift({'store_id':0,'store_name':"全部仓库"});
@@ -49,37 +49,62 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
         },200,false);
 
     };
-    $scope.editStock=function (index) {
-        if($scope.data.stock[index].editing){
-            $scope.data.stock[index].editing=false;
-            $scope.find($scope.data.stock[index].stock_id,index);
-            return false;
-        }
-        $scope.data.stock[index].editing=true;
-    }
-    $scope.find=function (stock_id,index) {
-        myhttp.getData('/index/stock/stockList','GET',{stock_id:stock_id})
-            .then(function (res) {
-                $scope.data.stock[index].number=res.data.number;
-                $scope.data.stock[index].sum=res.data.sum;
-            });
-    }
-    $scope.updateStock=function (index) {
-        var stock_id=$scope.data.stock[index].stock_id;
-        var number=$scope.data.stock[index].number;
-        myhttp.getData('/index/stock/stockUpdate','POST',{stock_id:stock_id,number:number})
-            .then(function (res) {
-                $scope.data.stock[index].editing=false;
-                if(res.data.result==1){
-                    toaster.pop('success','修改库存成功！');
-                    $scope.data.stock[index].number=res.data.newStock.number;
-                    $scope.data.stock[index].sum=res.data.newStock.sum;
+    $scope.delStock=function(stock){
+        var info="";
+        if($scope.storeId!=0){
+            angular.forEach($scope.stores,function(item){
+                if($scope.storeId==item.store_id) info=item.store_name+"的";
+        });
+        }else info="所有仓库的";
+        var myscope = $rootScope.$new();
+        myscope.info=info+stock.goods_name;
+        var modalInstance = $modal.open({
+            templateUrl: 'admin/confirm.html',
+            controller: 'ConfirmController',
+            scope:myscope
+        });
+        modalInstance.result.then(function () {
+            toaster.pop('info',"删除中请稍后...",'', 50000);
+            myhttp.getData('/index/stock/delStock','GET',{
+                store_id:$scope.storeId,
+                info:info+stock.goods_name,
+                goods_id:stock.goods_id,
+                inorder:stock.inorder
+            })
+                .then(function(res){
+                    toaster.clear();
+                    if(res.data.result==1){
+                        toaster.pop('success','删除成功！');
+                        $scope.query(1,$scope.search_context);
+                    }else
+                        toaster.pop('error','删除失败！');
 
-                }else {
-                    toaster.pop('error','修改库存失败！');
-                    $scope.find($scope.data.stock[index].stock_id,index);
-                }
+                });
 
-            });
+        });
+    };
+
+    $scope.updateStock=function (stock) {
+
+    };
+    $scope.stockDetail=function(stock){
+
+    };
+    $scope.exchange=function(stock){
+
+    };
+    $scope.transfer=function(stock){
+
+    };
+    $scope.carry=function(stock){
+
     }
 });
+app.controller('ConfirmController', ['$scope', '$modalInstance', function($scope, $modalInstance){
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);

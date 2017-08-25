@@ -62,6 +62,34 @@ class Stock
         $data['total_count']=$count;
         return json_encode($data);
     }
+    public function delStock(){
+        $delTime=date('Y-m-d H:i:s');
+        $stockDetailTable=$this->mdb.'.stock_detail';
+        $data['user']=$this->user;
+        $data['time']=$delTime;
+        $data['inorder']=$_GET['inorder'];
+        $data['remark']='删除库存：'.$_GET['info'];
+        $data['goods_id']=$_GET['goods_id'];
+        if($_GET['store_id']!=0)$where['store_id']=$_GET['store_id'];
+        $where['goods_id']=$_GET['goods_id'];
+        $where['inorder']=$_GET['inorder'];
+        $stockTable=$this->mdb.'.stock';
+        $delStock=Db::table($stockTable)->where($where)->select();
+       
+        foreach ($delStock as $value){
+            $data['store_id']=$value['store_id'];
+            //$data['remark'].='数量为'.;
+            $data['Dsum']=(-1)*$value['sum'];
+            $data['Dstock']=(-1)*$value['number'];
+            $data['sum']=$data['stock']=0;
+            $rs=Db::table($stockDetailTable)->insert($data);
+            if(!$rs) json_encode(['result'=>2]);
+            Db::table($stockTable)->delete($value['stock_id']);
+        }
+         return json_encode(['result'=>1]);
+
+    }
+
     public function stockUpdate(){
         $postData=file_get_contents("php://input",true);
         $postData=json_decode($postData,true);

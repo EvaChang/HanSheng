@@ -55,9 +55,12 @@
                     <td>{{stock.sum|currency:'￥'}}</td>
 
                     <td>
-                        <a ng-click="delStock($index) "><i class="glyphicon glyphicon-remove"></i>删除</a>
-                        <a ng-click="updateStock($index)" ng-show="storeId!=0 "><i class="fa fa-save">报损溢</i></a>&nbsp;
-                        <a ng-click="stockDetail($index)" ng-show="data.inorder==0 "><i class="fa fa-rotate-left">明细</i></a>
+                        <a ng-click="delStock(stock) "><i class="glyphicon glyphicon-remove"></i>删除</a>
+                        <a ng-click="updateStock(stock)" ng-show="storeId!=0 "><i class="fa fa-save">报损溢</i></a>&nbsp;
+                        <a ng-click="stockDetail(stock)" ng-show="storeId!=0 "><i class="icon-magnifier">明细</i></a>
+                        <a ng-click="exchange(stock)" ng-show="storeId!=0"><i class="fa fa-exchange"></i>仓库调转</a>
+                        <a ng-click="transfer(stock)" ng-show="storeId!=0"><i class="glyphicon glyphicon-transfer"></i>商品转换</a>
+                        <a ng-click="carry(stock)" ng-show="storeId!=0&&stock.inorder!=0"><i  class="icon-arrow-down"></i>结转批次</a>
                     </td>
                 </tr>
                 </tbody>
