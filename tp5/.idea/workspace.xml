@@ -22,7 +22,7 @@
       <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1083">
+            <state relative-caret-position="1425">
               <caret line="57" column="19" lean-forward="false" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
               <folding />
             </state>
@@ -32,9 +32,36 @@
       <file leaf-file-name="Stock.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/index/controller/Stock.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1721">
-              <caret line="147" column="61" lean-forward="true" selection-start-line="147" selection-start-column="61" selection-end-line="147" selection-end-column="61" />
+            <state relative-caret-position="382">
+              <caret line="376" column="26" lean-forward="false" selection-start-line="376" selection-start-column="26" selection-end-line="376" selection-end-column="26" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Purchase.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Purchase.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="583" column="9" lean-forward="false" selection-start-line="570" selection-start-column="8" selection-end-line="583" selection-end-column="9" />
+              <folding>
+                <marker date="1503746677332" expanded="true" signature="8659:8710" ph="delete from " />
+                <marker date="1503746677332" expanded="true" signature="22834:22887" ph="delete from " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sale.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Sale.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5823">
+              <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="19" />
+              <folding>
+                <marker date="1500938359838" expanded="true" signature="6415:6462" ph="delete from " />
+                <marker date="1500938359838" expanded="true" signature="10257:10304" ph="delete from " />
+                <marker date="1500938359838" expanded="true" signature="15497:15543" ph="delete from " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,7 +69,7 @@
       <file leaf-file-name="Finance.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/index/controller/Finance.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8037">
+            <state relative-caret-position="10575">
               <caret line="428" column="24" lean-forward="false" selection-start-line="428" selection-start-column="24" selection-end-line="428" selection-end-column="24" />
               <folding />
             </state>
@@ -53,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>付款给供应商</find>
       <find>array_push</find>
       <find>purchaseList</find>
       <find>creditDetail</find>
@@ -83,6 +109,7 @@
       <find>purchaseDetailDelete</find>
       <find>upda</find>
       <find>store</find>
+      <find>报</find>
     </findStrings>
     <replaceStrings>
       <replace>member</replace>
@@ -127,8 +154,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1378" />
-    <option name="height" value="744" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -186,7 +213,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
@@ -284,15 +311,16 @@
       <workItem from="1503667593824" duration="3460000" />
       <workItem from="1503685941916" duration="7823000" />
       <workItem from="1503724345819" duration="1110000" />
+      <workItem from="1503748221566" duration="9653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322916000" />
+    <option name="totallyTimeSpent" value="332569000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16187595" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -661,13 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Sale.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="491" column="0" lean-forward="false" selection-start-line="491" selection-start-column="0" selection-end-line="491" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/controller/Statistics.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
@@ -682,16 +703,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Purchase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="309" column="52" lean-forward="false" selection-start-line="309" selection-start-column="52" selection-end-line="309" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
+        <state relative-caret-position="1425">
           <caret line="57" column="19" lean-forward="false" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
           <folding />
         </state>
@@ -699,16 +713,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/index/controller/Finance.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8037">
+        <state relative-caret-position="10575">
           <caret line="428" column="24" lean-forward="false" selection-start-line="428" selection-start-column="24" selection-end-line="428" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Sale.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5823">
+          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <marker date="1500938359838" expanded="true" signature="6415:6462" ph="delete from " />
+            <marker date="1500938359838" expanded="true" signature="10257:10304" ph="delete from " />
+            <marker date="1500938359838" expanded="true" signature="15497:15543" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Purchase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="583" column="9" lean-forward="false" selection-start-line="570" selection-start-column="8" selection-end-line="583" selection-end-column="9" />
+          <folding>
+            <marker date="1503746677332" expanded="true" signature="8659:8710" ph="delete from " />
+            <marker date="1503746677332" expanded="true" signature="22834:22887" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/controller/Stock.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1721">
-          <caret line="147" column="61" lean-forward="true" selection-start-line="147" selection-start-column="61" selection-end-line="147" selection-end-column="61" />
+        <state relative-caret-position="382">
+          <caret line="376" column="26" lean-forward="false" selection-start-line="376" selection-start-column="26" selection-end-line="376" selection-end-column="26" />
           <folding />
         </state>
       </provider>

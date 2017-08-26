@@ -12,7 +12,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -25,9 +24,115 @@
       <file leaf-file-name="ctrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/purchase/ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="156" column="11" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="2964">
+              <caret line="164" column="11" lean-forward="false" selection-start-line="164" selection-start-column="11" selection-end-line="164" selection-end-column="11" />
+              <folding>
+                <marker date="1503746677316" expanded="true" signature="2500:9664" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="5254:5507" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="5540:7051" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="5723:6172" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="5839:6160" ph="{&quot;goods_id&quot;: row.good.goods_id...}" />
+                <marker date="1503746677316" expanded="true" signature="6342:6530" ph="{&quot;data&quot;: $scope.data...}" />
+                <marker date="1503746677316" expanded="true" signature="6565:7043" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="6643:7029" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="7093:8455" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="7154:7381" ph="{&quot;goods_id&quot;: item.goods_id...}" />
+                <marker date="1503746677316" expanded="true" signature="7414:8446" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="7455:7787" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="7498:7595" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="7934:8157" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="8001:8141" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="8499:8994" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="8536:8988" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="8615:8804" ph="{&quot;supply_id&quot;: $scope.data.supply.supply_id...}" />
+                <marker date="1503746677316" expanded="true" signature="8843:8976" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9030:9452" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9126:9349" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9161:9286" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9487:9661" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9571:9653" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9786:13041" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9882:11093" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9901:9932" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="9936:9980" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="10042:10109" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="10183:10313" ph="{&quot;page&quot;: page...}" />
+                <marker date="1503746677316" expanded="true" signature="10348:11085" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="11220:11868" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="11264:11742" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="11311:11479" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="11748:11862" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="11926:12044" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="12091:13039" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="12220:12349" ph="{&quot;templateUrl&quot;: 'admin/confirm.html'...}" />
+                <marker date="1503746677316" expanded="true" signature="12398:13031" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="12621:13019" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="12699:12840" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="12867:12946" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="13080:13349" ph="[...]" />
+                <marker date="1503746677316" expanded="true" signature="13141:13348" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="13171:13262" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="13296:13345" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="13465:17183" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="13682:13973" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="13808:13894" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="14009:15080" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="14052:15030" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="14734:15018" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="14860:15000" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="15114:15440" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="15299:15373" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="15473:15621" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="15659:17069" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="15790:15944" ph="{&quot;templateUrl&quot;: 'admin/confirm.html'...}" />
+                <marker date="1503746677316" expanded="true" signature="15993:17060" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="16230:17049" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="16311:17031" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="16536:17007" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="16722:16868" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17098:17181" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17285:18950" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17320:17479" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17413:17471" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17545:18267" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17564:17595" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17599:17643" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="17744:18259" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="18345:18948" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="18457:18634" ph="{&quot;templateUrl&quot;: 'admin/purchase/creditDetail.html'...}" />
+                <marker date="1503746677316" expanded="true" signature="18686:18940" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="18794:18857" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="18862:18930" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19058:22168" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19240:19396" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19429:19478" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19539:19959" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19644:19951" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19800:19848" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19854:19902" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="19988:20290" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20084:20249" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20115:20218" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20321:20428" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20376:20420" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20461:21020" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20543:20618" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20679:21014" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="20839:21002" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="21055:21853" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="21158:21243" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="21265:21847" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="21333:21454" ph="{&quot;templateUrl&quot;: 'admin/carryOverRemark.html'...}" />
+                <marker date="1503746677316" expanded="true" signature="21506:21835" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="21689:21819" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="21896:22166" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="22011:22149" ph="{&quot;templateUrl&quot;: 'admin/purchase/cfPrint.html'...}" />
+                <marker date="1503746677316" expanded="true" signature="22264:22822" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="22371:22428" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="22473:22739" ph="{...}" />
+                <marker date="1503746677316" expanded="true" signature="22592:22731" ph="{&quot;templateUrl&quot;: 'admin/purchase/cfPrint.html'...}" />
+                <marker date="1503746677316" expanded="true" signature="22770:22819" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,8 +140,8 @@
       <file leaf-file-name="ctrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/js/sale/ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="214" column="23" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="23" />
+            <state relative-caret-position="209">
+              <caret line="200" column="87" lean-forward="true" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -45,32 +150,10 @@
       <file leaf-file-name="purchase.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/purchase/purchase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+            <state relative-caret-position="1045">
+              <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#ui-select#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transfer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/stock/transfer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="46" column="47" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="47" />
-              <folding>
-                <element signature="n#style#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ui-select#0;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#1;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#2;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#3;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,9 +162,32 @@
       <file leaf-file-name="ctrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/js/stock/ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="238" column="22" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
+            <state relative-caret-position="180">
+              <caret line="159" column="43" lean-forward="false" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transfer.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/stock/transfer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="90" lean-forward="true" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
+              <folding>
+                <element signature="n#style#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ui-select#0;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#1;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#2;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#3;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -194,32 +300,23 @@
         <option value="$PROJECT_DIR$/admin/stock/updateStock.html" />
         <option value="$PROJECT_DIR$/admin/main.js" />
         <option value="$PROJECT_DIR$/admin/stock/exchange.html" />
-        <option value="$PROJECT_DIR$/admin/stock/transfer.html" />
         <option value="$PROJECT_DIR$/admin/js/purchase/ctrl.js" />
+        <option value="$PROJECT_DIR$/admin/stock/transfer.html" />
         <option value="$PROJECT_DIR$/admin/js/stock/ctrl.js" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1378" />
-    <option name="height" value="744" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -236,15 +333,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="client" />
@@ -379,6 +469,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -437,7 +528,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
@@ -548,19 +639,20 @@
       <workItem from="1503487785636" duration="8213000" />
       <workItem from="1503623424902" duration="7808000" />
       <workItem from="1503724275678" duration="11369000" />
+      <workItem from="1503747316524" duration="7766000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="614557000" />
+    <option name="totallyTimeSpent" value="622323000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15785609" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15773809" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32440946" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12057878" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -598,359 +690,468 @@
     <entry file="file://$PROJECT_DIR$/admin/sale/detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="35" column="135" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="135" />
+          <caret line="35" column="135" lean-forward="false" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="135" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
+          <caret line="46" column="76" lean-forward="false" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/mcredit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="24" column="85" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="85" />
+          <caret line="24" column="85" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="85" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/statistics/onWay.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="1" column="46" selection-start-line="1" selection-start-column="46" selection-end-line="1" selection-end-column="46" />
+          <caret line="1" column="46" lean-forward="false" selection-start-line="1" selection-start-column="46" selection-end-line="1" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/statistics/receiveGoods.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="38" column="114" selection-start-line="38" selection-start-column="114" selection-end-line="38" selection-end-column="114" />
+          <caret line="38" column="114" lean-forward="false" selection-start-line="38" selection-start-column="114" selection-end-line="38" selection-end-column="114" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="26" column="94" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
+          <caret line="26" column="94" lean-forward="false" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/auth/ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="49" column="93" selection-start-line="49" selection-start-column="93" selection-end-line="49" selection-end-column="93" />
+          <caret line="49" column="93" lean-forward="false" selection-start-line="49" selection-start-column="93" selection-end-line="49" selection-end-column="93" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/cfPrint.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/printSale.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/print.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="60" column="68" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
+          <caret line="60" column="68" lean-forward="false" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/info.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/storeUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/store.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/purchase/supply.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="48" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="6" />
+          <caret line="48" column="22" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/purchase/supplyUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="6" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/staff.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="26" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="60" selection-end-column="6" />
+          <caret line="26" column="26" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="60" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/unit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="13" column="86" selection-start-line="13" selection-start-column="86" selection-end-line="13" selection-end-column="86" />
+          <caret line="13" column="86" lean-forward="false" selection-start-line="13" selection-start-column="86" selection-end-line="13" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/staffUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="6" column="105" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="6" />
+          <caret line="6" column="105" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/unitUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="214" column="16" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
+          <caret line="214" column="16" lean-forward="false" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/blocks/nav.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/setting/goods.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="183" column="78" selection-start-line="183" selection-start-column="78" selection-end-line="183" selection-end-column="78" />
+          <caret line="183" column="78" lean-forward="false" selection-start-line="183" selection-start-column="78" selection-end-line="183" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/purchase/detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+          <caret line="46" column="48" lean-forward="false" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/ui_bootstrap.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="80" column="45" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="45" />
+          <caret line="80" column="45" lean-forward="false" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/ui_buttons.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="60" column="14" selection-start-line="51" selection-start-column="8" selection-end-line="60" selection-end-column="14" />
+          <caret line="60" column="14" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="60" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/purchase/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="46" column="178" selection-start-line="46" selection-start-column="156" selection-end-line="46" selection-end-column="178" />
+          <caret line="46" column="178" lean-forward="false" selection-start-line="46" selection-start-column="156" selection-end-line="46" selection-end-column="178" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/printCredit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/ui_icons.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="1811" column="71" selection-start-line="1811" selection-start-column="51" selection-end-line="1811" selection-end-column="71" />
+          <caret line="1811" column="71" lean-forward="false" selection-start-line="1811" selection-start-column="51" selection-end-line="1811" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/carryOverRemark.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="15" />
+          <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/setting/ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="84" column="20" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="20" />
+          <caret line="84" column="20" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/finance/fee.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/finance/costUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="33" />
+          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/finance/bdetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/statistics/saleToday.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="2" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="6" />
+          <caret line="2" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/confirm.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="2" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="6" />
+          <caret line="2" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/stock/stockDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/finance/transfer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="6" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/sale/creditDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="60" column="42" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="42" />
+          <caret line="60" column="42" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/stock/updateStock.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/finance/ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="105" column="11" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="11" />
+          <caret line="105" column="11" lean-forward="false" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding />
+          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/stock/exchange.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-          <folding>
-            <element signature="n#style#0;n#select#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
+          <caret line="25" column="47" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/stock/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
-          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
-          <folding />
+          <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/purchase/purchase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+        <state relative-caret-position="1045">
+          <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#ui-select#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/purchase/ctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2964">
+          <caret line="164" column="11" lean-forward="false" selection-start-line="164" selection-start-column="11" selection-end-line="164" selection-end-column="11" />
+          <folding>
+            <marker date="1503746677316" expanded="true" signature="2500:9664" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="5254:5507" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="5540:7051" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="5723:6172" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="5839:6160" ph="{&quot;goods_id&quot;: row.good.goods_id...}" />
+            <marker date="1503746677316" expanded="true" signature="6342:6530" ph="{&quot;data&quot;: $scope.data...}" />
+            <marker date="1503746677316" expanded="true" signature="6565:7043" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="6643:7029" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="7093:8455" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="7154:7381" ph="{&quot;goods_id&quot;: item.goods_id...}" />
+            <marker date="1503746677316" expanded="true" signature="7414:8446" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="7455:7787" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="7498:7595" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="7934:8157" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="8001:8141" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="8499:8994" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="8536:8988" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="8615:8804" ph="{&quot;supply_id&quot;: $scope.data.supply.supply_id...}" />
+            <marker date="1503746677316" expanded="true" signature="8843:8976" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9030:9452" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9126:9349" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9161:9286" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9487:9661" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9571:9653" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9786:13041" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9882:11093" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9901:9932" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="9936:9980" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="10042:10109" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="10183:10313" ph="{&quot;page&quot;: page...}" />
+            <marker date="1503746677316" expanded="true" signature="10348:11085" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="11220:11868" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="11264:11742" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="11311:11479" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="11748:11862" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="11926:12044" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="12091:13039" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="12220:12349" ph="{&quot;templateUrl&quot;: 'admin/confirm.html'...}" />
+            <marker date="1503746677316" expanded="true" signature="12398:13031" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="12621:13019" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="12699:12840" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="12867:12946" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="13080:13349" ph="[...]" />
+            <marker date="1503746677316" expanded="true" signature="13141:13348" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="13171:13262" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="13296:13345" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="13465:17183" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="13682:13973" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="13808:13894" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="14009:15080" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="14052:15030" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="14734:15018" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="14860:15000" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="15114:15440" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="15299:15373" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="15473:15621" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="15659:17069" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="15790:15944" ph="{&quot;templateUrl&quot;: 'admin/confirm.html'...}" />
+            <marker date="1503746677316" expanded="true" signature="15993:17060" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="16230:17049" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="16311:17031" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="16536:17007" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="16722:16868" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17098:17181" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17285:18950" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17320:17479" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17413:17471" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17545:18267" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17564:17595" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17599:17643" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="17744:18259" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="18345:18948" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="18457:18634" ph="{&quot;templateUrl&quot;: 'admin/purchase/creditDetail.html'...}" />
+            <marker date="1503746677316" expanded="true" signature="18686:18940" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="18794:18857" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="18862:18930" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19058:22168" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19240:19396" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19429:19478" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19539:19959" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19644:19951" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19800:19848" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19854:19902" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="19988:20290" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20084:20249" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20115:20218" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20321:20428" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20376:20420" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20461:21020" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20543:20618" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20679:21014" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="20839:21002" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="21055:21853" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="21158:21243" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="21265:21847" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="21333:21454" ph="{&quot;templateUrl&quot;: 'admin/carryOverRemark.html'...}" />
+            <marker date="1503746677316" expanded="true" signature="21506:21835" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="21689:21819" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="21896:22166" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="22011:22149" ph="{&quot;templateUrl&quot;: 'admin/purchase/cfPrint.html'...}" />
+            <marker date="1503746677316" expanded="true" signature="22264:22822" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="22371:22428" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="22473:22739" ph="{...}" />
+            <marker date="1503746677316" expanded="true" signature="22592:22731" ph="{&quot;templateUrl&quot;: 'admin/purchase/cfPrint.html'...}" />
+            <marker date="1503746677316" expanded="true" signature="22770:22819" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/sale/ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="214" column="23" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="23" />
+        <state relative-caret-position="209">
+          <caret line="200" column="87" lean-forward="true" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/stock/transfer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="46" column="47" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="47" />
+        <state relative-caret-position="494">
+          <caret line="26" column="90" lean-forward="true" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
           <folding>
             <element signature="n#style#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ui-select#0;n#div#0;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#1;n#form#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -961,18 +1162,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/purchase/ctrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="156" column="11" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/stock/ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="238" column="22" selection-start-line="238" selection-start-column="22" selection-end-line="238" selection-end-column="22" />
+        <state relative-caret-position="180">
+          <caret line="159" column="43" lean-forward="false" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
           <folding />
         </state>
       </provider>

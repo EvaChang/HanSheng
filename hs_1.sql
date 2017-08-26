@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-08-26 05:23:35
--- 服务器版本： 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: 2017-08-27 00:54:48
+-- 服务器版本： 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -54,7 +54,33 @@ INSERT INTO `account` (`account_id`, `subject`, `cost`, `income`, `sale_detail_i
 (2239, 1, 0, NULL, NULL, 6, '2017-08-26 11:16:34', 'admin', NULL, '删除商品发生报损:商贸城19的鲍鱼5头，数量：20.00', 1),
 (2240, 1, 0, NULL, NULL, 7, '2017-08-26 11:17:14', 'admin', NULL, '商品报损:鲍鱼6头，数量：-10', 1),
 (2241, 2, NULL, 0, NULL, 7, '2017-08-26 11:17:25', 'admin', NULL, '删除商品发生报溢:商贸城19的鲍鱼6头，数量：-10.00', 1),
-(2242, 2, NULL, 0, NULL, 8, '2017-08-26 11:18:49', 'admin', NULL, '商品报溢:鲍鱼7头，数量：30', 1);
+(2242, 2, NULL, 0, NULL, 8, '2017-08-26 11:18:49', 'admin', NULL, '商品报溢:鲍鱼7头，数量：30', 1),
+(2243, 1, 0, NULL, NULL, 8, '2017-08-26 22:56:21', 'admin', NULL, '商品报损:鲍鱼7头，数量：-30', 1),
+(2244, 2, NULL, 0, NULL, 8, '2017-08-26 22:56:28', 'admin', NULL, '商品报溢:鲍鱼7头，数量：10', 1),
+(2245, 1, 0, NULL, NULL, 8, '2017-08-26 22:56:40', 'admin', NULL, '商品报损:鲍鱼7头，数量：-10', 1),
+(2246, 1, -15, NULL, NULL, 8, '2017-08-26 22:59:07', 'admin', NULL, '商品报损:鲍鱼7头，数量：-1', 1),
+(2247, 2, NULL, 15, NULL, 8, '2017-08-26 22:59:15', 'admin', NULL, '商品报溢:鲍鱼7头，数量：1', 1),
+(2248, 2, NULL, 30, NULL, 8, '2017-08-26 22:59:21', 'admin', NULL, '商品报溢:鲍鱼7头，数量：2', 1),
+(2249, 0, 30, 20, 1, NULL, NULL, NULL, NULL, NULL, 0),
+(2250, 0, 30, 20, 2, NULL, NULL, NULL, NULL, NULL, 0),
+(2251, 0, 30, 20, 2, 8, '2017-08-27 06:18:19', 'admin', NULL, '商品转换成鲍鱼1头-数量:1,价格:30', 1),
+(2252, 0, 30, 20, 3, NULL, NULL, NULL, NULL, NULL, 0),
+(2253, 0, 30, 20, 3, 8, '2017-08-27 06:19:57', 'admin', NULL, '商品转换成鲍鱼1头-数量:2,价格:20', 1),
+(2254, 2, NULL, 150, NULL, 8, '2017-08-27 06:20:57', 'admin', NULL, '商品报溢:鲍鱼7头，数量：10', 1),
+(2255, 0, 30, 20, 4, NULL, NULL, NULL, NULL, NULL, 0),
+(2256, 0, 30, 20, 4, 8, '2017-08-27 06:21:15', 'admin', NULL, '商品转换成鲍鱼1头-数量:2,价格:20', 1),
+(2257, 0, 30, 20, 5, NULL, NULL, NULL, NULL, NULL, 0),
+(2258, 0, 30, 20, 5, 8, '2017-08-27 06:26:40', 'admin', NULL, '商品转换成鲍鱼1头-数量:2,价格:20', 1),
+(2259, 1, 130, NULL, NULL, 11, '2017-08-27 06:29:42', 'admin', NULL, '删除商品发生报损:商贸城19的鲍鱼1头，数量：8.00', 1),
+(2260, 0, 30, 20, 6, NULL, NULL, NULL, NULL, NULL, 0),
+(2261, 0, 30, 20, 6, 8, '2017-08-27 06:30:28', 'admin', NULL, '商品转换成鲍鱼2头-数量:2,价格:20', 1),
+(2262, 2, NULL, 150, NULL, 8, '2017-08-27 06:41:22', 'admin', NULL, '商品报溢:鲍鱼7头，数量：10', 1),
+(2263, 0, 30, 20, 7, NULL, NULL, NULL, NULL, NULL, 0),
+(2264, 0, 30, 20, 7, 8, '2017-08-27 06:41:39', 'admin', NULL, '商品转换成鲍鱼1头-数量:2,价格:50', 1),
+(2265, 1, -220, NULL, NULL, 11, '2017-08-27 06:43:01', 'admin', NULL, '商品报损:鲍鱼1头，数量：-10', 1),
+(2266, 0, 30, 20, 8, 8, '2017-08-27 06:43:22', 'admin', NULL, '商品转换成鲍鱼1头-数量:2,价格:50', 1),
+(2267, 0, 60, 40, 9, 8, '2017-08-27 06:47:03', 'admin', NULL, '商品转换成鲍鱼1头-数量:4,价格:50', 1),
+(2268, 0, 190, 400, 10, 11, '2017-08-27 06:49:35', 'admin', NULL, '商品转换成鲍鱼2头-数量:8,价格:4', 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +269,16 @@ INSERT INTO `log` (`log_id`, `user`, `time`, `remark`) VALUES
 (41, 'admin', '2017-08-26 11:14:44', '商品报溢:鲍鱼4头，数量：10'),
 (42, 'admin', '2017-08-26 11:16:30', '商品报溢:鲍鱼5头，数量：20'),
 (43, 'admin', '2017-08-26 11:17:14', '商品报损:鲍鱼6头，数量：-10'),
-(44, 'admin', '2017-08-26 11:18:49', '商品报溢:鲍鱼7头，数量：30');
+(44, 'admin', '2017-08-26 11:18:49', '商品报溢:鲍鱼7头，数量：30'),
+(45, 'admin', '2017-08-26 22:56:22', '商品报损:鲍鱼7头，数量：-30'),
+(46, 'admin', '2017-08-26 22:56:29', '商品报溢:鲍鱼7头，数量：10'),
+(47, 'admin', '2017-08-26 22:56:40', '商品报损:鲍鱼7头，数量：-10'),
+(48, 'admin', '2017-08-26 22:59:07', '商品报损:鲍鱼7头，数量：-1'),
+(49, 'admin', '2017-08-26 22:59:15', '商品报溢:鲍鱼7头，数量：1'),
+(50, 'admin', '2017-08-26 22:59:21', '商品报溢:鲍鱼7头，数量：2'),
+(51, 'admin', '2017-08-27 06:20:57', '商品报溢:鲍鱼7头，数量：10'),
+(52, 'admin', '2017-08-27 06:41:22', '商品报溢:鲍鱼7头，数量：10'),
+(53, 'admin', '2017-08-27 06:43:01', '商品报损:鲍鱼1头，数量：-10');
 
 -- --------------------------------------------------------
 
@@ -702,7 +737,12 @@ INSERT INTO `purchase` (`purchase_id`, `supply_id`, `sum`, `on_way`, `user`, `ti
 (58, 1, 3600, 0, 'admin', '2017-08-23 19:47:25', 'admin修改于：2017-08-25 23:59:39', 'S', NULL, '0'),
 (59, 1, 1200, 0, 'admin', '2017-08-23 20:24:22', '', 'S', NULL, '0'),
 (64, 1, 1000, 0, 'admin', '2017-08-25 21:07:03', '', 'S', NULL, 'IN20170825-1'),
-(65, 1, 100, 0, 'admin', '2017-08-26 02:36:49', '', 'S', NULL, '0');
+(65, 1, 100, 0, 'admin', '2017-08-26 02:36:49', '', 'S', NULL, '0'),
+(66, 1, 150, 0, 'admin', '2017-08-26 22:58:31', '', 'S', NULL, '0'),
+(67, 0, 40, 0, 'admin', '2017-08-27 06:26:40', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'transfer', NULL, 'IN20170827-1'),
+(68, 0, 40, 0, 'admin', '2017-08-27 06:30:28', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'transfer', NULL, '0'),
+(69, 0, 100, 0, 'admin', '2017-08-27 06:41:39', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'transfer', NULL, '0'),
+(70, 0, 100, 0, 'admin', '2017-08-27 06:43:22', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'transfer', NULL, '0');
 
 --
 -- 触发器 `purchase`
@@ -729,7 +769,6 @@ DELIMITER ;
 
 --
 -- 替换视图以便查看 `purchase_all`
--- (See below for the actual view)
 --
 CREATE TABLE `purchase_all` (
 `purchase_id` int(12)
@@ -772,7 +811,14 @@ INSERT INTO `purchase_detail` (`purchase_detail_id`, `purchase_id`, `goods_id`, 
 (62, 58, 1, '120.00', 3600, '30.00', 3, 2),
 (63, 59, 1, '120.00', 1200, '10.00', 2, 2),
 (64, 64, 2, '100.00', 1000, '10.00', 3, 2),
-(65, 65, 1, '10.00', 100, '10.00', 3, 3);
+(65, 65, 1, '10.00', 100, '10.00', 3, 3),
+(66, 66, 8, '15.00', 150, '10.00', 1, 4),
+(67, 67, 11, '20.00', 40, '2.00', 1, 4),
+(68, 68, 10, '20.00', 40, '2.00', 1, 4),
+(69, 69, 11, '50.00', 100, '2.00', 1, 4),
+(70, 70, 11, '50.00', 100, '2.00', 1, 4),
+(71, 71, 11, '50.00', 200, '4.00', 1, 4),
+(72, 72, 10, '4.00', 32, '8.00', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -793,11 +839,18 @@ CREATE TABLE `purchase_finish` (
   `inorder` varchar(15) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- 转存表中的数据 `purchase_finish`
+--
+
+INSERT INTO `purchase_finish` (`purchase_id`, `supply_id`, `sum`, `on_way`, `user`, `time`, `summary`, `type`, `cf`, `inorder`) VALUES
+(71, 0, 200, 0, 'admin', '2017-08-27 06:47:03', '由商品转换生成:鲍鱼7头-数量:4,价格:10', 'tran', NULL, NULL),
+(72, 0, 32, 0, 'admin', '2017-08-27 06:49:35', '由商品转换生成:鲍鱼1头-数量:8,价格:50', 'tran', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
 -- 替换视图以便查看 `purchase_price`
--- (See below for the actual view)
 --
 CREATE TABLE `purchase_price` (
 `goods_id` int(10)
@@ -855,7 +908,6 @@ DELIMITER ;
 
 --
 -- 替换视图以便查看 `sale_all`
--- (See below for the actual view)
 --
 CREATE TABLE `sale_all` (
 `sale_id` int(12)
@@ -888,56 +940,20 @@ CREATE TABLE `sale_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 触发器 `sale_detail`
+-- 转存表中的数据 `sale_detail`
 --
-DELIMITER $$
-CREATE TRIGGER `sale_Detail_after_Delete` AFTER DELETE ON `sale_detail` FOR EACH ROW BEGIN 
-set @cost=(SELECT cost FROM account WHERE account.sale_detail_id=old.sale_detail_id);
-DELETE FROM account WHERE account.sale_detail_id=old.sale_detail_id;
-    UPDATE stock set stock.number=stock.number+old.number,stock.sum=stock.sum+@cost
-    WHERE stock.goods_id=old.goods_id;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `sale_Detail_after_update` AFTER UPDATE ON `sale_detail` FOR EACH ROW BEGIN
-set @number=(SELECT number from stock WHERE stock.goods_id=new.goods_id);
-set @stock=(SELECT sum from stock WHERE stock.goods_id=new.goods_id);
-IF(@number=0) THEN
-UPDATE account set cost=new.sum,income=new.sum WHERE account.sale_detail_id=new.sale_detail_id;
- UPDATE stock set stock.number=old.number-new.number,stock.sum=stock.sum-new.sum
-    WHERE stock.goods_id=new.goods_id;
 
-ELSE
-UPDATE account set cost=cost+@stock*(new.number-old.number)/@number,income=new.sum WHERE account.sale_detail_id=new.sale_detail_id;
-
-    UPDATE stock set stock.sum=stock.sum*(1-(new.number-old.number)/stock.number) ,stock.number=stock.number+old.number-new.number
-    WHERE stock.goods_id=new.goods_id;
-    end if;
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `sale_detail_after_insert` AFTER INSERT ON `sale_detail` FOR EACH ROW BEGIN
-SET @cnt=(
- select COUNT(*)  from stock where stock.goods_id=new.goods_id );
- set @number=(SELECT number from stock WHERE stock.goods_id=new.goods_id);
- set @stock=(SELECT sum from stock WHERE stock.goods_id=new.goods_id);
-    if(@cnt=0||@number=0) then 
-    INSERT INTO account(sale_detail_id,cost,income,subject)
-    VALUES(new.sale_detail_id,new.sum,new.sum,0);
-   set @number=(0-new.number);
-   set @sum=(0-new.sum);
-    INSERT into stock (goods_id,number,sum) VALUES (new.goods_id,@number,@sum);
-    ELSE
-     INSERT INTO account(sale_detail_id,cost,income,subject)
-    VALUES(new.sale_detail_id,@stock*(new.number/@number),new.sum,0);
-    UPDATE stock set stock.sum=stock.sum*(1-new.number/stock.number),stock.number=stock.number-new.number WHERE stock.goods_id=new.goods_id;
-    end if;
-   
-END
-$$
-DELIMITER ;
+INSERT INTO `sale_detail` (`sale_detail_id`, `sale_id`, `goods_id`, `price`, `sum`, `number`, `store_id`, `inorder`, `unit_id`) VALUES
+(1, 6, 8, '10.00', 20, '2.00', 1, '0', 4),
+(2, 7, 8, '10.00', 20, '2.00', 1, '0', 4),
+(3, 8, 8, '10.00', 20, '2.00', 1, '0', 4),
+(4, 9, 8, '10.00', 20, '2.00', 1, '0', 4),
+(5, 10, 8, '10.00', 20, '2.00', 1, '0', 4),
+(6, 11, 8, '10.00', 20, '2.00', 1, '0', 4),
+(7, 12, 8, '10.00', 20, '2.00', 1, '0', 4),
+(8, 13, 8, '10.00', 20, '2.00', 1, '0', 4),
+(9, 14, 8, '10.00', 40, '4.00', 1, '0', 4),
+(10, 15, 11, '50.00', 400, '8.00', 1, '0', 4);
 
 -- --------------------------------------------------------
 
@@ -952,15 +968,31 @@ CREATE TABLE `sale_finish` (
   `user` varchar(32) NOT NULL,
   `time` datetime NOT NULL,
   `summary` text,
-  `type` char(4) NOT NULL,
+  `type` char(10) NOT NULL,
   `cf` int(12) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `sale_finish`
+--
+
+INSERT INTO `sale_finish` (`sale_id`, `member_id`, `sum`, `user`, `time`, `summary`, `type`, `cf`) VALUES
+(5, 0, 40, 'admin', '2017-08-26 23:06:24', '商品转换成鲍鱼1头-数量:1,价格:50', 'transfer', NULL),
+(6, 0, 20, 'admin', '2017-08-27 06:15:25', '商品转换成鲍鱼1头-数量:1,价格:30', 'transfer', NULL),
+(7, 0, 20, 'admin', '2017-08-27 06:18:19', '商品转换成鲍鱼1头-数量:1,价格:30', 'transfer', NULL),
+(8, 0, 20, 'admin', '2017-08-27 06:19:57', '商品转换成鲍鱼1头-数量:2,价格:20', 'transfer', NULL),
+(9, 0, 20, 'admin', '2017-08-27 06:21:15', '商品转换成鲍鱼1头-数量:2,价格:20', 'transfer', NULL),
+(10, 0, 20, 'admin', '2017-08-27 06:26:40', '商品转换成鲍鱼1头-数量:2,价格:20', 'transfer', NULL),
+(11, 0, 20, 'admin', '2017-08-27 06:30:28', '商品转换成鲍鱼2头-数量:2,价格:20', 'transfer', NULL),
+(12, 0, 20, 'admin', '2017-08-27 06:41:39', '商品转换成鲍鱼1头-数量:2,价格:50', 'transfer', NULL),
+(13, 0, 20, 'admin', '2017-08-27 06:43:22', '商品转换成鲍鱼1头-数量:2,价格:50', 'transfer', NULL),
+(14, 0, 40, 'admin', '2017-08-27 06:47:03', '商品转换成鲍鱼1头-数量:4,价格:50', 'transfer', NULL),
+(15, 0, 400, 'admin', '2017-08-27 06:49:35', '商品转换成鲍鱼2头-数量:8,价格:4', 'transfer', NULL);
 
 -- --------------------------------------------------------
 
 --
 -- 替换视图以便查看 `sale_price`
--- (See below for the actual view)
 --
 CREATE TABLE `sale_price` (
 `goods_id` int(10)
@@ -1008,12 +1040,13 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `goods_id`, `sum`, `number`, `store_id`, `inorder`) VALUES
-(39, 8, '0.00', '30.00', 1, '0'),
+(39, 8, '0.00', '0.00', 1, '0'),
 (40, 9, '0.00', '0.00', 1, '0'),
 (41, 11, '0.00', '0.00', 1, '0'),
 (42, 12, '0.00', '0.00', 1, '0'),
 (43, 13, '0.00', '0.00', 1, '0'),
-(44, 14, '0.00', '0.00', 1, '0');
+(44, 14, '0.00', '0.00', 1, '0'),
+(47, 10, '102.00', '12.00', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -1111,18 +1144,18 @@ INSERT INTO `stock_detail` (`stock_detail`, `goods_id`, `inorder`, `store_id`, `
 (118, 1, '0', 3, '-1.00', '28.00', '3341.94', '-119.36', '2017-08-26 04:41:31', '调出到：商贸城18', NULL, 'admin'),
 (119, 1, '0', 2, '1.00', '13.00', '1558.07', '119.36', '2017-08-26 04:41:31', '调入由：海吉星', NULL, 'admin'),
 (120, 10, '0', 1, '0.00', '0.00', '0.00', '0.00', '2017-08-26 11:09:31', '删除库存：商贸城19的鲍鱼2头', NULL, 'admin'),
-(121, 4, '0', 1, '0.00', '0.00', '0.00', '0.00', '2017-08-26 11:12:40', '删除库存：所有仓库的鲍鱼3头', NULL, 'admin'),
-(122, 2, 'IN20170825-1', 3, '-20.00', '0.00', '0.00', '-2000.00', '2017-08-26 11:13:07', '删除库存：所有仓库的小扇贝', NULL, 'admin'),
-(123, 1, '0', 1, '-10.00', '0.00', '0.00', '-1200.00', '2017-08-26 11:14:10', '删除库存：所有仓库的大扇贝', NULL, 'admin'),
-(124, 1, '0', 2, '-13.00', '0.00', '0.00', '-1558.07', '2017-08-26 11:14:10', '删除库存：所有仓库的大扇贝', NULL, 'admin'),
-(125, 1, '0', 3, '-28.00', '0.00', '0.00', '-3341.94', '2017-08-26 11:14:10', '删除库存：所有仓库的大扇贝', NULL, 'admin'),
-(126, 5, '0', 1, '10.00', '10.00', '0.00', '0.00', '2017-08-26 11:14:44', '报溢：鲍鱼4头', NULL, 'admin'),
-(127, 5, '0', 1, '-10.00', '0.00', '0.00', '0.00', '2017-08-26 11:15:46', '删除库存：所有仓库的鲍鱼4头', NULL, 'admin'),
-(128, 6, '0', 1, '20.00', '20.00', '0.00', '0.00', '2017-08-26 11:16:30', '报溢：鲍鱼5头', NULL, 'admin'),
-(129, 6, '0', 1, '-20.00', '0.00', '0.00', '0.00', '2017-08-26 11:16:34', '删除库存：商贸城19的鲍鱼5头', NULL, 'admin'),
-(130, 7, '0', 1, '-10.00', '-10.00', '0.00', '0.00', '2017-08-26 11:17:14', '报损：鲍鱼6头', NULL, 'admin'),
-(131, 7, '0', 1, '10.00', '0.00', '0.00', '0.00', '2017-08-26 11:17:25', '删除库存：商贸城19的鲍鱼6头', NULL, 'admin'),
-(132, 8, '0', 1, '30.00', '30.00', '0.00', '0.00', '2017-08-26 11:18:49', '报溢：鲍鱼7头', NULL, 'admin');
+(146, 11, 'IN20170827-1', 1, '-8.00', '0.00', '0.00', '-130.00', '2017-08-27 06:29:42', '删除库存：商贸城19的鲍鱼1头', NULL, 'admin'),
+(147, 8, '0', 1, '-2.00', '0.00', '0.00', '-30.00', '2017-08-27 06:30:28', '商品转换成鲍鱼2头-数量:2,价格:20', 'sale', 'admin'),
+(148, 10, '0', 1, '2.00', '4.00', '70.00', '40.00', '2017-08-27 06:30:28', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'purchase', 'admin'),
+(149, 8, '0', 1, '10.00', '10.00', '150.00', '150.00', '2017-08-27 06:41:22', '报溢：鲍鱼7头', NULL, 'admin'),
+(150, 8, '0', 1, '-2.00', '6.00', '90.00', '-30.00', '2017-08-27 06:41:39', '商品转换成鲍鱼1头-数量:2,价格:50', 'sale', 'admin'),
+(151, 11, '0', 1, '2.00', '10.00', '220.00', '100.00', '2017-08-27 06:41:39', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'purchase', 'admin'),
+(152, 11, '0', 1, '-10.00', '0.00', '0.00', '-220.00', '2017-08-27 06:43:01', '报损：鲍鱼1头', NULL, 'admin'),
+(153, 8, '0', 1, '-2.00', '4.00', '60.00', '-30.00', '2017-08-27 06:43:22', '商品转换成鲍鱼1头-数量:2,价格:50', 'sale', 'admin'),
+(154, 11, '0', 1, '2.00', '8.00', '190.00', '100.00', '2017-08-27 06:43:22', '由商品转换生成:鲍鱼7头-数量:2,价格:10', 'purchase', 'admin'),
+(155, 8, '0', 1, '-4.00', '0.00', '0.00', '-60.00', '2017-08-27 06:47:03', '商品转换成鲍鱼1头-数量:4,价格:50', 'sale', 'admin'),
+(156, 11, '0', 1, '-8.00', '0.00', '0.00', '-190.00', '2017-08-27 06:49:35', '商品转换成鲍鱼2头-数量:8,价格:4', 'sale', 'admin'),
+(157, 10, '0', 1, '8.00', '12.00', '102.00', '32.00', '2017-08-27 06:49:35', '由商品转换生成:鲍鱼1头-数量:8,价格:50', 'purchase', 'admin');
 
 --
 -- 触发器 `stock_detail`
@@ -1457,7 +1490,7 @@ ALTER TABLE `unit_price`
 -- 使用表AUTO_INCREMENT `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2243;
+  MODIFY `account_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2269;
 --
 -- 使用表AUTO_INCREMENT `bank`
 --
@@ -1487,7 +1520,7 @@ ALTER TABLE `info`
 -- 使用表AUTO_INCREMENT `log`
 --
 ALTER TABLE `log`
-  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- 使用表AUTO_INCREMENT `member`
 --
@@ -1497,22 +1530,22 @@ ALTER TABLE `member`
 -- 使用表AUTO_INCREMENT `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchase_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `purchase_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- 使用表AUTO_INCREMENT `purchase_detail`
 --
 ALTER TABLE `purchase_detail`
-  MODIFY `purchase_detail_id` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `purchase_detail_id` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- 使用表AUTO_INCREMENT `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `sale_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sale_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- 使用表AUTO_INCREMENT `sale_detail`
 --
 ALTER TABLE `sale_detail`
-  MODIFY `sale_detail_id` int(18) NOT NULL AUTO_INCREMENT;
+  MODIFY `sale_detail_id` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- 使用表AUTO_INCREMENT `staff`
 --
@@ -1522,12 +1555,12 @@ ALTER TABLE `staff`
 -- 使用表AUTO_INCREMENT `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `stock_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- 使用表AUTO_INCREMENT `stock_detail`
 --
 ALTER TABLE `stock_detail`
-  MODIFY `stock_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `stock_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 --
 -- 使用表AUTO_INCREMENT `store`
 --

@@ -149,13 +149,15 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
     $scope.transfer=function(stock){
         var myscope = $rootScope.$new();
         myscope.stock=stock;
+        myscope.store_id=$scope.storeId;
         var modalInstance=$modal.open({
             templateUrl: 'admin/stock/transfer.html',
             controller: 'stockTransferController',
              size:'lg',
             scope:myscope
         });
-        modalInstance.result.then(function(){
+        modalInstance.result.then(function(res){
+            toaster.pop('success','转换成功!');
             $scope.query(1,$scope.search_context);
         });
 
@@ -237,6 +239,7 @@ app.controller('stockExchangeController',['$scope', '$modalInstance','myhttp','t
 }]);
 app.controller('stockTransferController',function($scope, $modalInstance,myhttp,toaster,$timeout){
     $scope.transIn={};
+    $scope.check=false;
     $scope.ok = function () {
         $modalInstance.dismiss();
     };
@@ -249,21 +252,52 @@ app.controller('stockTransferController',function($scope, $modalInstance,myhttp,
         }
     };
     $scope.getUnit=function(item){
-        $scope.units={};
-       myhttp.getData('/index/stock/getUnit','GET',{goods_id:item.goods_id,unit_id:item.unit_id})
+        $scope.units=new Array(0);
+        $scope.transIn.unit='';
+        myhttp.getData('/index/stock/getUnit','GET',{goods_id:item.goods_id,unit_id:item.unit_id})
            .then(function(res){
                $scope.units=res.data;
                $timeout(function () {
                    $scope.transIn.unit = item.unit_id;
-               },200,false);
+                   angular.element('#transInNumber').focus();
+               },100,false);
            });
     };
     $scope.transfer=function () {
-        if(angular.isUndefined($scope.in.good)){
+        if(angular.isUndefined($scope.transIn.good)){
             toaster.pop('info','请输入商品信息！');return false;
         }
-        if($scope.out.number==''||$scope.out.price==''||$scope.in.number==''||$scope.in.price==''){
+        if($scope.out.number==''||$scope.out.price==''||$scope.transIn.number==''||$scope.transIn.price==''){
             toaster.pop('info','请完善数量和价格！');return false;
         }
+        $scope.check=true;
+        myhttp.getData('/index/stock/transfer','POST',
+            {
+                out:{
+                    goods_id:$scope.stock.goods_id,
+                    goods_name:$scope.stock.goods_name,
+                    number:$scope.out.number,
+                    price:$scope.out.price,
+                    unit_id:$scope.stock.unit_id,
+                    inorder:$scope.stock.inorder
+                },
+                in:{
+                    goods_id:$scope.transIn.good.goods_id,
+                    goods_name:$scope.transIn.good.goods_name,
+                    basic_unit:$scope.transIn.good.unit_id,
+                    number:$scope.transIn.number,
+                    price:$scope.transIn.price,
+                    unit_id:$scope.transIn.unit
+                },
+                remark:$scope.remark,
+                store_id:$scope.store_id
+        }).then(function (res) {
+            $scope.check=false;
+            if(res.data.result==1){
+                $modalInstance.close(1);
+            }else
+             toaster.pop('error','转换错误,请联系管理员');
+
+        });
     };
 });
