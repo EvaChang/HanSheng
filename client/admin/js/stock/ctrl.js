@@ -235,8 +235,8 @@ app.controller('stockExchangeController',['$scope', '$modalInstance','myhttp','t
         $modalInstance.dismiss();
     };
 }]);
-app.controller('stockTransferController',function($scope, $modalInstance,myhttp,toaster){
-    $scope.in={};
+app.controller('stockTransferController',function($scope, $modalInstance,myhttp,toaster,$timeout){
+    $scope.transIn={};
     $scope.ok = function () {
         $modalInstance.dismiss();
     };
@@ -249,11 +249,21 @@ app.controller('stockTransferController',function($scope, $modalInstance,myhttp,
         }
     };
     $scope.getUnit=function(item){
+        $scope.units={};
        myhttp.getData('/index/stock/getUnit','GET',{goods_id:item.goods_id,unit_id:item.unit_id})
            .then(function(res){
                $scope.units=res.data;
-               $scope.in.unit=item.unit_id;
+               $timeout(function () {
+                   $scope.transIn.unit = item.unit_id;
+               },200,false);
            });
-
-    }
+    };
+    $scope.transfer=function () {
+        if(angular.isUndefined($scope.in.good)){
+            toaster.pop('info','请输入商品信息！');return false;
+        }
+        if($scope.out.number==''||$scope.out.price==''||$scope.in.number==''||$scope.in.price==''){
+            toaster.pop('info','请完善数量和价格！');return false;
+        }
+    };
 });

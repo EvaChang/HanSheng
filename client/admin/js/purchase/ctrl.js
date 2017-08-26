@@ -150,6 +150,13 @@ app.controller('PurchaseController',function ($scope,myhttp,toaster,ngDialog,$st
     }
     $scope.delRow=function (index) {
         $scope.rows.splice(index,1);
+        var sum=0,num=0;
+        angular.forEach($scope.rows,function (row) {
+            num+=row.number;
+            sum+=row.sum;
+        });
+        $scope.ttl_number=num;
+        $scope.data.ttl_sum=sum;
     }
     $scope.save=function (back) {
         if($scope.data.supply==''){toaster.pop('info','请输入供应商');return false;}

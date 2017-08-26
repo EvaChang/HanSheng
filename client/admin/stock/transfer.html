@@ -23,12 +23,12 @@
                     <input type="number" class="form-control"  style="width: 40%" ng-model="out.price"/>
                 </div>
             </form>
-            <div class=" inline" style="text-align: center;width: 10%">==></div>
+            <div class=" inline" style="text-align: center;width: 10%"><i class="fa fa-arrow-circle-right"></i></div>
             <form role="form"  class="inline" style="border: solid 1px silver;width: 40%">
                 <p></p>
                 <div class="form-group">
                     <label class="col-sm-4">转换商品:</label>
-                    <ui-select ng-model="in.good" on-select="getUnit($item)"  class="inline" style="width:50%">
+                    <ui-select ng-model="transIn.good" on-select="getUnit($item)"  class="inline" style="width:50%">
                         <ui-select-match >{{$select.selected.goods_name}}</ui-select-match>
                         <ui-select-choices repeat="good in goods"
                                            refresh="query_goods($select.search)"
@@ -39,19 +39,17 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4">数量:</label>
-                    <select ng-model="in.number" class="form-control  inline" style="width: 40%">
-                        <option ng-repeat="store in stores" value="{{store.store_id}}">{{store.store_name}}</option>
-                    </select>
+                    <input class="form-control" type="number "style="width:40%" ng-model="transIn.number"/>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4">单位:</label>
-                    <select ng-model="in.unit" class="form-control  inline" style="width: 40%">
+                    <select ng-model="transIn.unit" class="form-control  inline" style="width: 40%">
                         <option ng-repeat="unit in units" value="{{unit.unit_id}}">{{unit.unit_name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4" >价格:</label>
-                    <input type="number" class="form-control inline " style="width: 30%" ng-model="in.price">
+                    <input type="number" class="form-control inline " style="width: 30%" ng-model="transIn.price">
                 </div>
 
             </form>
@@ -59,8 +57,8 @@
                 <label class="col-sm-2 inline">&nbsp;备&nbsp;注:</label>
                 <textarea class="form-control inline " ng-model="remark"></textarea>
             </div>
-            <div class="modal-footer" style="text-align: right">
-                <button type="submit" class="btn m-b-xs w-xs  btn-success " ng-disabled="check">{{!check?'转换':'保存中..'}}</button>
+            <div style="text-align: right">
+                <button type="submit" class="btn m-b-xs w-xs  btn-success " ng-disabled="check" ng-click="transfer()">{{!check?'转换':'保存中..'}}</button>
                 <button type="submit" class="btn m-b-xs w-xs  btn-primary " ng-click="ok()">取消</button>
             </div>
         </div>

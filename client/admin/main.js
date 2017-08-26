@@ -11,7 +11,7 @@ angular.module('app')
       isSmartDevice( $window ) && angular.element($window.document.body).addClass('smart');
       $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
       $scope.app = {
-		host: "/ihanc/hansheng/tp5/public/index.php",
+		host: "/hx/tp5/public/index.php",
         name: 'iHanc',
         version: '1.0.0',
         // for chart colors
@@ -95,13 +95,13 @@ app.service('myhttp',function ($http,$localStorage) {
         $http.defaults.headers.common['Authorization'] = $localStorage.auth;
         if(method=='GET'){
             return $http({
-                url:"/ihanc/hansheng/tp5/public/index.php"+url,
+                url:"/hx/tp5/public/index.php"+url,
                 method:"GET",
                 params:params
             })
         }else{
             return $http({
-                url:"/ihanc/hansheng/tp5/public/index.php"+url,
+                url:"/hx/tp5/public/index.php"+url,
                 method:method,
                 data:params
             })
