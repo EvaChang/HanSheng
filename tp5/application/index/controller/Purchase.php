@@ -307,7 +307,7 @@ class Purchase
             $data['stock']=$data['Dstock']+$stock['number'];
             $data['time']=$deleteTime;
             $data['user']=$this->user;
-            $data['remark']="删除进货单:".$good['goods_name']."-".$value['number'].'*'.$value['price'].'='.$value['sum'];
+            $data['remark']="删除进货单:".$rs['time'].'-'.$good['goods_name']."-".$value['number'].'*'.$value['price'].'='.$value['sum'];
             $rs=Db::table($stock_detailTable)->insert($data);
             if($rs) $rs=Db::table($purchaseDetailTable)->delete($value['purchase_detail_id']);
             unset($data);
@@ -370,7 +370,7 @@ class Purchase
             $data['time']=date("Y-m-d H:i:s");
             $data['stock']=$data['Dstock']+$stock['number'];
             $data['sum']=$data['Dsum']+$stock['sum'];
-            $data['remark']="修改进货明细单:".implode("|",$origin);
+            $data['remark']="修改进货明细单:".$inorder['time'].'-'.$origin['number'].'*'.$origin['price'].'='.$origin['sum'];
             $stockDetailTable=$this->mdb.'.stock_detail';
             $rs=Db::table($stockDetailTable)->insert($data);
 
@@ -413,7 +413,7 @@ class Purchase
             $data['time']=date("Y-m-d H:i:s");
             $data['stock']=$data['Dstock']+$stock['number'];
             $data['sum']=$data['Dsum']+$stock['sum'];
-            $data['remark']="删除进货明细单:".implode("|",$origin);
+            $data['remark']="删除进货明细单:".$inorder['time'].'-'.$origin['number'].'*'.$origin['price'].'='.$origin['sum'];
             $stockDetailTable=$this->mdb.'.stock_detail';
             $rs=Db::table($stockDetailTable)->insert($data);
             $sum = Db::table($purchaseDetailTable)

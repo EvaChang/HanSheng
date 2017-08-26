@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-08-24 00:55:51
--- 服务器版本： 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: 2017-08-26 05:23:35
+-- 服务器版本： 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `hs_1`
 --
+CREATE DATABASE IF NOT EXISTS `hs_1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `hs_1`;
 
 -- --------------------------------------------------------
 
@@ -31,8 +33,28 @@ CREATE TABLE `account` (
   `subject` int(4) NOT NULL,
   `cost` int(8) DEFAULT NULL,
   `income` int(8) DEFAULT NULL,
-  `sale_detail_id` int(12) DEFAULT NULL
+  `sale_detail_id` int(12) DEFAULT NULL,
+  `goods_id` int(10) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `user` varchar(32) DEFAULT NULL,
+  `creditTable` varchar(32) DEFAULT NULL,
+  `summary` varchar(64) DEFAULT NULL,
+  `store_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `account`
+--
+
+INSERT INTO `account` (`account_id`, `subject`, `cost`, `income`, `sale_detail_id`, `goods_id`, `time`, `user`, `creditTable`, `summary`, `store_id`) VALUES
+(2235, 2, NULL, 1000, NULL, 2, '2017-08-26 02:32:28', 'admin', NULL, '商品报溢:小扇贝，数量：10', 1),
+(2236, 8, NULL, 300, 2, NULL, '2017-08-26 11:04:08', 'admin', 'sale', '现金:2017', 0),
+(2237, 2, NULL, 0, NULL, 5, '2017-08-26 11:14:44', 'admin', NULL, '商品报溢:鲍鱼4头，数量：10', 1),
+(2238, 2, NULL, 0, NULL, 6, '2017-08-26 11:16:30', 'admin', NULL, '商品报溢:鲍鱼5头，数量：20', 1),
+(2239, 1, 0, NULL, NULL, 6, '2017-08-26 11:16:34', 'admin', NULL, '删除商品发生报损:商贸城19的鲍鱼5头，数量：20.00', 1),
+(2240, 1, 0, NULL, NULL, 7, '2017-08-26 11:17:14', 'admin', NULL, '商品报损:鲍鱼6头，数量：-10', 1),
+(2241, 2, NULL, 0, NULL, 7, '2017-08-26 11:17:25', 'admin', NULL, '删除商品发生报溢:商贸城19的鲍鱼6头，数量：-10.00', 1),
+(2242, 2, NULL, 0, NULL, 8, '2017-08-26 11:18:49', 'admin', NULL, '商品报溢:鲍鱼7头，数量：30', 1);
 
 -- --------------------------------------------------------
 
@@ -215,7 +237,13 @@ INSERT INTO `log` (`log_id`, `user`, `time`, `remark`) VALUES
 (35, 'admin', '2017-08-23 20:46:20', '删除进货单韩川:60'),
 (36, 'admin', '2017-08-23 20:47:57', '删除进货单韩川:0'),
 (37, 'admin', '2017-08-23 20:48:46', '删除进货单韩川:165'),
-(38, 'admin', '2017-08-23 20:49:07', '删除进货单韩川:1000');
+(38, 'admin', '2017-08-23 20:49:07', '删除进货单韩川:1000'),
+(39, 'admin', '2017-08-25 23:53:30', '删除进货单韩川:1200'),
+(40, 'admin', '2017-08-26 02:32:28', '商品报溢:小扇贝，数量：10'),
+(41, 'admin', '2017-08-26 11:14:44', '商品报溢:鲍鱼4头，数量：10'),
+(42, 'admin', '2017-08-26 11:16:30', '商品报溢:鲍鱼5头，数量：20'),
+(43, 'admin', '2017-08-26 11:17:14', '商品报损:鲍鱼6头，数量：-10'),
+(44, 'admin', '2017-08-26 11:18:49', '商品报溢:鲍鱼7头，数量：30');
 
 -- --------------------------------------------------------
 
@@ -659,7 +687,7 @@ CREATE TABLE `purchase` (
   `user` varchar(32) NOT NULL,
   `time` datetime NOT NULL,
   `summary` text,
-  `type` varchar(4) NOT NULL,
+  `type` varchar(10) NOT NULL,
   `cf` int(12) DEFAULT NULL,
   `inorder` varchar(15) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -671,9 +699,10 @@ CREATE TABLE `purchase` (
 INSERT INTO `purchase` (`purchase_id`, `supply_id`, `sum`, `on_way`, `user`, `time`, `summary`, `type`, `cf`, `inorder`) VALUES
 (54, 1, 1200, 0, 'admin', '2017-08-23 13:08:18', '', 'S', NULL, '0'),
 (55, 1, 100, 0, 'admin', '2017-08-23 19:27:08', '', 'S', NULL, 'IN20170823-1'),
-(57, 1, 1200, 0, 'admin', '2017-08-23 19:46:44', '', 'S', NULL, '0'),
-(58, 1, 2400, 0, 'admin', '2017-08-23 19:47:25', '', 'S', NULL, '0'),
-(59, 1, 1200, 0, 'admin', '2017-08-23 20:24:22', '', 'S', NULL, '0');
+(58, 1, 3600, 0, 'admin', '2017-08-23 19:47:25', 'admin修改于：2017-08-25 23:59:39', 'S', NULL, '0'),
+(59, 1, 1200, 0, 'admin', '2017-08-23 20:24:22', '', 'S', NULL, '0'),
+(64, 1, 1000, 0, 'admin', '2017-08-25 21:07:03', '', 'S', NULL, 'IN20170825-1'),
+(65, 1, 100, 0, 'admin', '2017-08-26 02:36:49', '', 'S', NULL, '0');
 
 --
 -- 触发器 `purchase`
@@ -700,6 +729,7 @@ DELIMITER ;
 
 --
 -- 替换视图以便查看 `purchase_all`
+-- (See below for the actual view)
 --
 CREATE TABLE `purchase_all` (
 `purchase_id` int(12)
@@ -709,7 +739,7 @@ CREATE TABLE `purchase_all` (
 ,`user` varchar(32)
 ,`time` datetime
 ,`summary` mediumtext
-,`type` varchar(4)
+,`type` varchar(10)
 ,`cf` int(12)
 ,`finish` bigint(20)
 ,`inorder` varchar(15)
@@ -739,9 +769,10 @@ CREATE TABLE `purchase_detail` (
 INSERT INTO `purchase_detail` (`purchase_detail_id`, `purchase_id`, `goods_id`, `price`, `sum`, `number`, `store_id`, `unit_id`) VALUES
 (58, 54, 1, '120.00', 1200, '10.00', 1, 2),
 (59, 55, 2, '100.00', 100, '1.00', 1, 2),
-(61, 57, 1, '120.00', 1200, '10.00', 1, 2),
-(62, 58, 1, '120.00', 2400, '20.00', 3, 2),
-(63, 59, 1, '120.00', 1200, '10.00', 2, 2);
+(62, 58, 1, '120.00', 3600, '30.00', 3, 2),
+(63, 59, 1, '120.00', 1200, '10.00', 2, 2),
+(64, 64, 2, '100.00', 1000, '10.00', 3, 2),
+(65, 65, 1, '10.00', 100, '10.00', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -766,6 +797,7 @@ CREATE TABLE `purchase_finish` (
 
 --
 -- 替换视图以便查看 `purchase_price`
+-- (See below for the actual view)
 --
 CREATE TABLE `purchase_price` (
 `goods_id` int(10)
@@ -787,9 +819,17 @@ CREATE TABLE `sale` (
   `user` varchar(32) NOT NULL,
   `time` datetime NOT NULL,
   `summary` text,
-  `type` varchar(4) NOT NULL,
+  `type` varchar(10) NOT NULL,
   `cf` int(12) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `sale`
+--
+
+INSERT INTO `sale` (`sale_id`, `member_id`, `sum`, `user`, `time`, `summary`, `type`, `cf`) VALUES
+(1, 33, 150, 'admin', '2017-08-24 18:58:44', '', 'S', NULL),
+(2, 33, 300, 'admin', '2017-08-26 11:04:08', '现金收入条目-房租收入:2017', 'income', NULL);
 
 --
 -- 触发器 `sale`
@@ -815,6 +855,7 @@ DELIMITER ;
 
 --
 -- 替换视图以便查看 `sale_all`
+-- (See below for the actual view)
 --
 CREATE TABLE `sale_all` (
 `sale_id` int(12)
@@ -823,7 +864,7 @@ CREATE TABLE `sale_all` (
 ,`user` varchar(32)
 ,`time` datetime
 ,`summary` mediumtext
-,`type` varchar(4)
+,`type` varchar(10)
 ,`cf` int(12)
 ,`finish` bigint(20)
 );
@@ -919,6 +960,7 @@ CREATE TABLE `sale_finish` (
 
 --
 -- 替换视图以便查看 `sale_price`
+-- (See below for the actual view)
 --
 CREATE TABLE `sale_price` (
 `goods_id` int(10)
@@ -966,17 +1008,7 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `goods_id`, `sum`, `number`, `store_id`, `inorder`) VALUES
-(28, 1, '2400.00', '20.00', 1, '0'),
-(29, 2, '100.00', '1.00', 1, 'IN20170823-1'),
-(31, 1, '2400.00', '20.00', 3, '0'),
-(32, 1, '1200.00', '10.00', 2, '0'),
-(33, 2, '0.00', '0.00', 1, 'IN20170823-2'),
-(34, 10, '0.00', '0.00', 1, '0'),
-(35, 4, '0.00', '0.00', 1, '0'),
-(36, 5, '0.00', '0.00', 1, '0'),
-(37, 6, '0.00', '0.00', 1, '0'),
-(38, 7, '0.00', '0.00', 1, '0'),
-(39, 8, '0.00', '0.00', 1, '0'),
+(39, 8, '0.00', '30.00', 1, '0'),
 (40, 9, '0.00', '0.00', 1, '0'),
 (41, 11, '0.00', '0.00', 1, '0'),
 (42, 12, '0.00', '0.00', 1, '0'),
@@ -1062,7 +1094,35 @@ INSERT INTO `stock_detail` (`stock_detail`, `goods_id`, `inorder`, `store_id`, `
 (101, 7, '0', 1, '-1.00', '0.00', '0.00', '-25.00', '2017-08-23 20:48:45', '删除进货单:鲍鱼6头-1.00*25.00=25', NULL, 'admin'),
 (102, 8, '0', 1, '-1.00', '0.00', '0.00', '-30.00', '2017-08-23 20:48:45', '删除进货单:鲍鱼7头-1.00*30.00=30', NULL, 'admin'),
 (103, 9, '0', 1, '-1.00', '0.00', '0.00', '-35.00', '2017-08-23 20:48:45', '删除进货单:鲍鱼8头-1.00*35.00=35', NULL, 'admin'),
-(104, 2, 'IN20170823-2', 1, '-10.00', '0.00', '0.00', '-1000.00', '2017-08-23 20:49:07', '删除进货单:小扇贝-10.00*100.00=1000', NULL, 'admin');
+(104, 2, 'IN20170823-2', 1, '-10.00', '0.00', '0.00', '-1000.00', '2017-08-23 20:49:07', '删除进货单:小扇贝-10.00*100.00=1000', NULL, 'admin'),
+(105, 2, 'IN20170823-1', 1, '-1.00', '0.00', '0.00', '-100.00', '2017-08-25 07:58:13', '删除库存：所有仓库的小扇贝', NULL, 'admin'),
+(106, 2, 'IN20170823-2', 1, '0.00', '0.00', '0.00', '0.00', '2017-08-25 08:04:42', '删除库存：商贸城19的小扇贝', NULL, 'admin'),
+(107, 2, 'IN20170825-1', 3, '10.00', '10.00', '1000.00', '1000.00', '2017-08-25 21:07:03', NULL, 'purchase', 'admin'),
+(108, 1, '0', 1, '-10.00', '10.00', '1200.00', '-1200.00', '2017-08-25 23:53:30', '删除进货单:大扇贝-10.00*120.00=1200', NULL, 'admin'),
+(109, 1, '0', 3, '10.00', '30.00', '3600.00', '1200.00', '2017-08-25 23:59:39', '修改进货明细单:2017-08-23 19:47:2520.00*120.00=2400', NULL, 'admin'),
+(110, 1, '0', 3, '10.00', '40.00', '4800.00', '1200.00', '2017-08-26 00:01:32', '报溢：大扇贝', NULL, 'admin'),
+(111, 1, '0', 3, '-10.00', '30.00', '3600.00', '-1200.00', '2017-08-26 00:02:54', '报损：大扇贝', NULL, 'admin'),
+(112, 2, 'IN20170825-1', 3, '10.00', '20.00', '2000.00', '1000.00', '2017-08-26 02:32:28', '报溢：小扇贝', NULL, 'admin'),
+(113, 1, '0', 3, '1.00', '31.00', '3700.00', '100.00', '2017-08-26 02:36:49', NULL, 'purchase', 'admin'),
+(114, 1, '0', 3, '-1.00', '30.00', '3580.65', '-119.35', '2017-08-26 04:40:36', '调出到：商贸城18', NULL, 'admin'),
+(115, 1, '0', 2, '1.00', '11.00', '1319.35', '119.35', '2017-08-26 04:40:36', '调入由：海吉星', NULL, 'admin'),
+(116, 1, '0', 3, '-1.00', '29.00', '3461.30', '-119.36', '2017-08-26 04:40:54', '调出到：商贸城18', NULL, 'admin'),
+(117, 1, '0', 2, '1.00', '12.00', '1438.71', '119.36', '2017-08-26 04:40:54', '调入由：海吉星', NULL, 'admin'),
+(118, 1, '0', 3, '-1.00', '28.00', '3341.94', '-119.36', '2017-08-26 04:41:31', '调出到：商贸城18', NULL, 'admin'),
+(119, 1, '0', 2, '1.00', '13.00', '1558.07', '119.36', '2017-08-26 04:41:31', '调入由：海吉星', NULL, 'admin'),
+(120, 10, '0', 1, '0.00', '0.00', '0.00', '0.00', '2017-08-26 11:09:31', '删除库存：商贸城19的鲍鱼2头', NULL, 'admin'),
+(121, 4, '0', 1, '0.00', '0.00', '0.00', '0.00', '2017-08-26 11:12:40', '删除库存：所有仓库的鲍鱼3头', NULL, 'admin'),
+(122, 2, 'IN20170825-1', 3, '-20.00', '0.00', '0.00', '-2000.00', '2017-08-26 11:13:07', '删除库存：所有仓库的小扇贝', NULL, 'admin'),
+(123, 1, '0', 1, '-10.00', '0.00', '0.00', '-1200.00', '2017-08-26 11:14:10', '删除库存：所有仓库的大扇贝', NULL, 'admin'),
+(124, 1, '0', 2, '-13.00', '0.00', '0.00', '-1558.07', '2017-08-26 11:14:10', '删除库存：所有仓库的大扇贝', NULL, 'admin'),
+(125, 1, '0', 3, '-28.00', '0.00', '0.00', '-3341.94', '2017-08-26 11:14:10', '删除库存：所有仓库的大扇贝', NULL, 'admin'),
+(126, 5, '0', 1, '10.00', '10.00', '0.00', '0.00', '2017-08-26 11:14:44', '报溢：鲍鱼4头', NULL, 'admin'),
+(127, 5, '0', 1, '-10.00', '0.00', '0.00', '0.00', '2017-08-26 11:15:46', '删除库存：所有仓库的鲍鱼4头', NULL, 'admin'),
+(128, 6, '0', 1, '20.00', '20.00', '0.00', '0.00', '2017-08-26 11:16:30', '报溢：鲍鱼5头', NULL, 'admin'),
+(129, 6, '0', 1, '-20.00', '0.00', '0.00', '0.00', '2017-08-26 11:16:34', '删除库存：商贸城19的鲍鱼5头', NULL, 'admin'),
+(130, 7, '0', 1, '-10.00', '-10.00', '0.00', '0.00', '2017-08-26 11:17:14', '报损：鲍鱼6头', NULL, 'admin'),
+(131, 7, '0', 1, '10.00', '0.00', '0.00', '0.00', '2017-08-26 11:17:25', '删除库存：商贸城19的鲍鱼6头', NULL, 'admin'),
+(132, 8, '0', 1, '30.00', '30.00', '0.00', '0.00', '2017-08-26 11:18:49', '报溢：鲍鱼7头', NULL, 'admin');
 
 --
 -- 触发器 `stock_detail`
@@ -1101,6 +1161,33 @@ INSERT INTO `store` (`store_id`, `store_name`) VALUES
 (2, '商贸城18'),
 (1, '商贸城19'),
 (3, '海吉星');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `subject`
+--
+
+CREATE TABLE `subject` (
+  `subject_id` int(8) NOT NULL,
+  `subject_name` varchar(32) NOT NULL,
+  `subject_type` int(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `subject`
+--
+
+INSERT INTO `subject` (`subject_id`, `subject_name`, `subject_type`) VALUES
+(1, '商品报损支出', 1),
+(2, '商品报溢收入', 0),
+(3, '员工工资', 1),
+(4, '其他收入', 0),
+(7, '水电费', 1),
+(8, '房租收入', 0),
+(9, '生活支出', 1),
+(10, '维修收入', 0),
+(11, '采购费用', 1);
 
 -- --------------------------------------------------------
 
@@ -1335,6 +1422,13 @@ ALTER TABLE `store`
   ADD UNIQUE KEY `store_name` (`store_name`);
 
 --
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_id`),
+  ADD UNIQUE KEY `subject_name` (`subject_name`);
+
+--
 -- Indexes for table `supply`
 --
 ALTER TABLE `supply`
@@ -1363,7 +1457,7 @@ ALTER TABLE `unit_price`
 -- 使用表AUTO_INCREMENT `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `account_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2243;
 --
 -- 使用表AUTO_INCREMENT `bank`
 --
@@ -1393,7 +1487,7 @@ ALTER TABLE `info`
 -- 使用表AUTO_INCREMENT `log`
 --
 ALTER TABLE `log`
-  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- 使用表AUTO_INCREMENT `member`
 --
@@ -1403,17 +1497,17 @@ ALTER TABLE `member`
 -- 使用表AUTO_INCREMENT `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchase_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `purchase_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- 使用表AUTO_INCREMENT `purchase_detail`
 --
 ALTER TABLE `purchase_detail`
-  MODIFY `purchase_detail_id` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `purchase_detail_id` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- 使用表AUTO_INCREMENT `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `sale_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `sale_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `sale_detail`
 --
@@ -1428,17 +1522,22 @@ ALTER TABLE `staff`
 -- 使用表AUTO_INCREMENT `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `stock_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- 使用表AUTO_INCREMENT `stock_detail`
 --
 ALTER TABLE `stock_detail`
-  MODIFY `stock_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `stock_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 --
 -- 使用表AUTO_INCREMENT `store`
 --
 ALTER TABLE `store`
   MODIFY `store_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- 使用表AUTO_INCREMENT `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `subject_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- 使用表AUTO_INCREMENT `supply`
 --

@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4>库存明细</h4>
+    <h4>库存明细:{{stock.goods_name}}</h4>
 </div>
 <div class=" table-responsive" style=" overflow-y: auto; max-height: 400px">
     <table class="table table-striped b-t b-light">
@@ -15,10 +15,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="list in data.lists" >
-            <td>{{list.goods_name}}</td>
-            <td>{{list.number}}</td>
+        <tr ng-repeat="list in data.stockDetail" >
+            <td>{{list.time}}</td>
+            <td>{{list.Dstock}}{{stock.unit_name}}</td>
+            <td>{{list.Dsum|currency:'￥'}}</td>
+            <td>{{list.stock}}{{stock.unit_name}}</td>
             <td>{{list.sum|currency:'￥'}}</td>
+            <td>{{list.user}}</td>
+            <td>{{list.type=='purchase'?'进货':''}}{{list.type=='sale'?'销售':''}}{{list.remark}}</td>
         </tr>
         </tbody>
     </table>

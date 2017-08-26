@@ -76,7 +76,7 @@ class Stock
         $where['inorder']=$_GET['inorder'];
         $stockTable=$this->mdb.'.stock';
         $delStock=Db::table($stockTable)->where($where)->select();
-       
+        $i=0;
         foreach ($delStock as $value){
             $data['store_id']=$value['store_id'];
             //$data['remark'].='数量为'.;
@@ -86,6 +86,29 @@ class Stock
             $rs=Db::table($stockDetailTable)->insert($data);
             if(!$rs) json_encode(['result'=>2]);
             Db::table($stockTable)->delete($value['stock_id']);
+
+            if($value['number']!=0) {
+                $adata[$i]['time'] = $delTime;
+                $adata[$i]['user'] = $this->user;
+                $adata[$i]['goods_id'] = $_GET['goods_id'];
+                $adata[$i]['store_id'] = $value['store_id'];
+                if ($value['number'] > 0) {
+                    $adata[$i]['subject'] = 1;
+                    $adata[$i]['cost'] = $value['sum'];
+                    $adata[$i]['summary'] = $remark = "删除商品发生报损:" . $_GET['info'] . "，数量：" . $value['number'];
+                } else {
+                    $adata[$i]['subject'] = 2;
+                    $adata[$i]['income'] = $value['sum'];
+                    $adata[$i]['summary'] = $remark = "删除商品发生报溢:" . $_GET['info'] . "，数量：" . $value['number'];
+                }
+                $i++;
+            }
+            if($i>0) {
+                $account = $this->mdb . '.account';
+                $rs = Db::table($account)->insertAll($adata);
+                if (!$rs) json_encode(['result' => 2]);
+            }
+
         }
          return json_encode(['result'=>1]);
 
@@ -129,6 +152,7 @@ class Stock
         $adata['time']=$updateTime;
         $adata['user']=$this->user;
         $adata['goods_id']=$postData['stock']['goods_id'];
+        $adata['store_id']=$postData['store_id'];
         if($data['Dstock']<0){      //报损
             $adata['subject']=1;
             $adata['cost']=$data['Dsum'];
@@ -143,6 +167,97 @@ class Stock
         if(!$rs) return json_encode(['result'=>3]);
         mylog($this->user,$this->mdb,$remark);
         return  json_encode(['result'=>1]);
+    }
+    public function stockDetail(){
+        $postData=file_get_contents("php://input",true);
+        $postData=json_decode($postData,true);
+        $where=$postData['where'];
+        if($postData['search']!='') $where['remark']=['like','%'.$postData['search'].'%'];
+        $stockDetailTable=$this->mdb.'.stock_detail';
+        $rs=Db::table($stockDetailTable)
+            ->where($where)
+            ->order('time desc')
+            ->page($postData['page'],10)
+            ->select();
+        $data['stockDetail']=$rs;
+        $count=Db::table($stockDetailTable)
+            ->where($where)
+           ->count();
+        $data['total_count']=$count;
+        return json_encode($data);
+    }
+    public function exchange()
+    {
+        $postData = file_get_contents("php://input", true);
+        $postData = json_decode($postData, true);
+        $stockTable = $this->mdb . '.stock a';
+        $storeTable = $this->mdb . '.store b';
+        $data['goods_id'] = $postData['goods_id'];
+        $data['inorder'] = $postData['inorder'];
+        $data['a.store_id'] = $postData['trans']['inStoreId'];
+        $in = Db::table($stockTable)
+            ->join($storeTable, 'a.store_id=b.store_id')
+            ->where($data)
+            ->find();
+        $data['a.store_id'] = $postData['trans']['outStoreId'];
+        $out = Db::table($stockTable)
+            ->join($storeTable, 'a.store_id=b.store_id')
+            ->where($data)
+            ->find();
+        unset($data['a.store_id']);
+        $data['store_id']=$postData['trans']['outStoreId'];
+        $data['time'] = date('Y-m-d H:i:s');
+        $data['user'] = $this->user;
+        $data['Dstock'] = $postData['trans']['Dstock'] * (-1);
+        //print_r($out);
+        if ($out['number'] > 0) {
+            $data['Dsum'] = $out['sum'] / $out['number'] * $data['Dstock'];
+        } else {
+            $purchaseDetail = $this->mdb . '.purchase_detail';
+            $price = Db::table($purchaseDetail)
+                ->field('price')
+                ->where(['goods_id' => $postData['goods_id']])
+                ->order('purchase_detail_id desc')
+                ->find();
+            if (!$price) {
+                $saleDetail = $this->mdb . '.sale_detail';
+                $price = Db::table($saleDetail)
+                    ->field('price')
+                    ->where(['goods_id' => $postData['goods_id']])
+                    ->order('sale_detail_id desc')
+                    ->find();
+            }
+            $data['Dsum'] = $data['Dstock'] * $price['price'];
+        }
+        $data['sum'] = $out['sum'] + $data['Dsum'];
+        $data['stock'] = $out['number'] + $data['Dstock'];
+        $data['remark'] = '调出到：' . $in['store_name'] . (isset($postData['trans']['remark'])?$postData['trans']['remark']:'');
+        $stockDetailTable = $this->mdb . '.stock_detail';
+        $rs = Db::table($stockDetailTable)->insert($data);
+        if (!$rs) json_encode(['result' => 0]);
+        $data['store_id'] = $postData['trans']['inStoreId'];
+        $data['Dstock'] = $postData['trans']['Dstock'];
+        $data['Dsum'] = (-1) * $data['Dsum'];
+        $data['stock'] = $in['number'] + $data['Dstock'];
+        $data['sum'] = $in['sum'] + $data['Dsum'];
+        $data['remark'] = '调入由：' . $out['store_name'] . (isset($postData['trans']['remark'])?$postData['trans']['remark']:'');
+        $stockDetailTable = $this->mdb . '.stock_detail';
+        $rs = Db::table($stockDetailTable)->insert($data);
+        if (!$rs) json_encode(['result' => 0]);
+        json_encode(['result' => 1]);
+    }
+    public function getUnit(){
+        $unitTable=$this->mdb.'.unit b';
+        $unit_priceTable=$this->mdb.'.unit_price a';
+        $where['goods_id']=$_GET['goods_id'];
+        $rs=Db::table($unit_priceTable)
+            ->join($unitTable,'a.unit_id=b.unit_id')
+            ->where($where)
+            ->field('a.unit_id,unit_name')
+            ->select();
+        $unit=Db::table($unitTable)->find($_GET['unit_id']);
+        $rs[sizeof($rs)]=$unit;
+        return json_encode($rs);
     }
 
 }

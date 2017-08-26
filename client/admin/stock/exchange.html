@@ -1,0 +1,35 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">仓库评价调货:{{stock.goods_name}}</h1>
+</div>
+<div class="wrapper-md" >
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    <label class="col-sm-3">转出仓库:</label>
+                    <p>{{store_name}}</p>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">转入仓库:</label>
+                    <select ng-model="trans.inStoreId" class="form-control  inline" style="width: 50%">
+                        <option ng-repeat="store in stores" value="{{store.store_id}}">{{store.store_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3" >&nbsp;数&nbsp;量:</label>
+                    <input type="number" class="form-control inline " style="width: 50%" ng-model="trans.Dstock">
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">&nbsp;备&nbsp;注:</label>
+                    <textarea class="form-control inline " style="width: 50%" ng-model="trans.remark"></textarea>
+                </div>
+                <div class="modal-footer" style="text-align: right">
+
+                    <button type="submit" class="btn m-b-xs w-xs  btn-success " ng-click="exchange()" ng-disabled="check">{{!check?'调货':'保存中..'}}</button>
+                    <button type="submit" class="btn m-b-xs w-xs  btn-primary " ng-click="ok()">取消</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+</div>
