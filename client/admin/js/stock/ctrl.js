@@ -157,15 +157,49 @@ app.controller('StockController',function ($scope,myhttp,$stateParams,toaster,$t
             scope:myscope
         });
         modalInstance.result.then(function(res){
-            toaster.pop('success','转换成功!');
+            toaster.pop('success','拆装成功!');
             $scope.query(1,$scope.search_context);
         });
 
 
     };
     $scope.carry=function(stock){
+        myhttp.getData('/index/stock/carryCheck','GET',{goods_id:stock.goods_id,store_id:$scope.storeId,inorder:stock.inorder}).then(function (res) {
+            if(res.data==0){
+                toaster.pop('info','库存中没有下一批货，不能结转！');
+            }else{
+                var myscope = $rootScope.$new();
+                myscope.info=stock.goods_name;
+                var modalInstance = $modal.open({
+                    templateUrl: 'admin/stock/carry.html',
+                    controller: 'ConfirmController',
+                    size:'sm',
+                    scope:myscope
+                });
+                modalInstance.result.then(function (res) {
+                    toaster.pop('info','修改中...','',5000);
+                    myhttp.getData('/index/stock/carry','POST',{
+                        number:res,
+                        stock:stock,
+                        store_id:$scope.storeId
+                    }).then(function (res) {
+                        toaster.clear();
+                        if(res.data.result==1){
+                            // toaster.pop('success','修改成功！');
+                            $scope.query(1,$scope.search_context);
+                        }else{
+                            toaster.pop('error','结转失败！');
+                        }
+
+                    });
+                });
+
+
+            }
+        });
 
     }
+
 });
 app.controller('ConfirmController', ['$scope', '$modalInstance', function($scope, $modalInstance){
     $scope.ok = function () {
@@ -226,7 +260,7 @@ app.controller('stockExchangeController',['$scope', '$modalInstance','myhttp','t
        myhttp.getData('/index/stock/exchange','POST',{goods_id:$scope.stock.goods_id,inorder:$scope.stock.inorder,trans:$scope.trans})
            .then(function(res){
                $scope.check=false;
-              if(res==1){
+              if(res.data.result==1){
                   toaster.pop('success','调货成功！');
                   $modalInstance.close()
               }else toaster.pop('error','调货未成功，请联系管理员！');
@@ -296,7 +330,7 @@ app.controller('stockTransferController',function($scope, $modalInstance,myhttp,
             if(res.data.result==1){
                 $modalInstance.close(1);
             }else
-             toaster.pop('error','转换错误,请联系管理员');
+             toaster.pop('error','拆装错误,请联系管理员');
 
         });
     };

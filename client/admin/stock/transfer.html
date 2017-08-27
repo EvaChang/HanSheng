@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">库存商品转换</h1>
+    <h1 class="m-n font-thin h3">库存商品拆装</h1>
 </div>
 <div class="wrapper-md" >
     <div class="panel panel-default">
@@ -27,7 +27,7 @@
             <form role="form"  class="inline" style="border: solid 1px silver;width: 45%">
                 <p></p>
                 <div class="form-group">
-                    <label class="col-sm-6">转换商品:</label>
+                    <label class="col-sm-6">拆装商品:</label>
                     <ui-select ng-model="transIn.good" on-select="getUnit($item)"  class="inline" style="width:50%">
                         <ui-select-match >{{$select.selected.goods_name}}</ui-select-match>
                         <ui-select-choices repeat="good in goods"
@@ -58,7 +58,7 @@
                 <textarea class="form-control inline " ng-model="remark"></textarea>
             </div>
             <div style="text-align: right">
-                <button type="submit" class="btn m-b-xs w-xs  btn-success " ng-disabled="check" ng-click="transfer()">{{!check?'转换':'保存中..'}}</button>
+                <button type="submit" class="btn m-b-xs w-xs  btn-success " ng-disabled="check" ng-click="transfer()">{{!check?'拆装':'保存中..'}}</button>
                 <button type="submit" class="btn m-b-xs w-xs  btn-primary " ng-click="ok()">取消</button>
             </div>
         </div>

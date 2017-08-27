@@ -244,7 +244,7 @@ class Stock
         $stockDetailTable = $this->mdb . '.stock_detail';
         $rs = Db::table($stockDetailTable)->insert($data);
         if (!$rs) json_encode(['result' => 0]);
-        json_encode(['result' => 1]);
+        return json_encode(['result' => 1]);
     }
     public function getUnit(){
         $unitTable=$this->mdb.'.unit b';
@@ -265,7 +265,7 @@ class Stock
         $time=date('Y-m-d H:i:s');
         //插入sale表
         $remark=(isset($postData['remark'])?$postData['remark']:'')
-            ."商品转换成".$postData['in']['goods_name']."-数量:".$postData['in']['number'].',价格:'
+            ."商品拆装成".$postData['in']['goods_name']."-数量:".$postData['in']['number'].',价格:'
             .$postData['in']['price'];
         $saleTable=$this->mdb.'.sale';
         $sale['member_id']=0;
@@ -311,7 +311,7 @@ class Stock
         $stockDetail['store_id']=$postData['store_id'];
         $stockDetail['Dstock']=(-1)*$postData['out']['number'];
         $stockDetail['stock']=$stock['number']+$stockDetail['Dstock'];
-        $stockDetail['Dsum']=(-1)*$aData['cost'];
+        $stockDetail['Dsum']=(-1)*$aData['income'];
         $stockDetail['sum']=$stock['sum']+$stockDetail['Dsum'];
         $stockDetail['time']=$time;
         $stockDetail['remark']=$remark;
@@ -323,7 +323,7 @@ class Stock
 
         //查询是否加入inorder
         $remark=(isset($postData['remark'])?$postData['remark']:'')
-            ."由商品转换生成:".$postData['out']['goods_name']."-数量:".$postData['out']['number'].',价格:'
+            ."由商品拆装生成:".$postData['out']['goods_name']."-数量:".$postData['out']['number'].',价格:'
             .$postData['out']['price'];
         $pWhere['goods_id']=$postData['in']['goods_id'];
         $pWhere['store_id']=$postData['store_id'];
@@ -396,6 +396,127 @@ class Stock
         $rs=Db::table($stockDetailTable)->insert($stockDetail);
         if(!$rs) return json_encode(['result'=>0]);
         return json_encode(['result'=>1]);
+    }
+    public function carryCheck(){
+        $stockTable=$this->mdb.'.stock';
+        $where['goods_id']=$_GET['goods_id'];
+        $where['store_id']=$_GET['store_id'];
+        $rs=Db::table($stockTable)->where($where)->field('inorder')->order('stock_id desc,inorder desc')->find();
+        if($rs['inorder']!=$_GET['inorder']) return json_encode(1);
+        return json_encode(0);
+    }
+    public function carry(){
+        $postData = file_get_contents("php://input", true);
+        $postData = json_decode($postData, true);
+        $time=date('Y-m-d H:i:s');
+        $remark="商品结转下批次"."-数量:".$postData['number'];
+        //查询stock
+        $where['store_id']=$postData['store_id'];
+        $where['inorder']=$postData['stock']['inorder'];
+        $where['goods_id']=$postData['stock']['goods_id'];
+        $stockTable=$this->mdb.'.stock';
+        $stock=Db::table($stockTable)->where($where)->find();
+        //插入sale表
+        $saleTable=$this->mdb.'.sale';
+        $sale['member_id']=0;
+        $sale['time']=$time;
+        $sale['sum']=$postData['number']*$stock['sum']/$stock['number'];
+        $sale['user']=$this->user;
+        $sale['type']="carry";
+        $sale['summary']=$remark;
+        $sale_id=Db::table($saleTable)->insertGetId($sale);
+        if(!$sale_id) return json_encode(['result'=>0]);
+        Db::table($saleTable)->delete($sale_id);
+        //插入sale_detail表
+        $saleDetailTable=$this->mdb.'.sale_detail';
+        $sDetail['sale_id']=$sale_id;
+        $sDetail['goods_id']=$postData['stock']['goods_id'];
+        $sDetail['number']=$postData['number'];
+        $sDetail['price']=$stock['sum']/$stock['number'];
+        $sDetail['sum']=$sale['sum'];
+        $sDetail['store_id']=$postData['store_id'];
+        $sDetail['inorder']=$postData['stock']['inorder'];
+        $sDetail['unit_id']=$postData['stock']['unit_id'];
+        $sDetail_id=Db::table($saleDetailTable)->insertGetId($sDetail);
+        if(!$sDetail_id) return json_encode(['result'=>0]);
+
+        //插入account表
+        $aData['sale_detail_id']=$sDetail_id;
+        $aData['goods_id']=$postData['stock']['goods_id'];
+        $aData['subject']=0;
+        $aData['cost']=$sale['sum'];
+        $aData['income']=$sale['sum'];
+        $aData['time']=$time;
+        $aData['user']=$this->user;
+        $aData['store_id']=$postData['store_id'];
+        $aData['summary']=$remark;
+        $accountTable=$this->mdb.'.account';
+        $rs=Db::table($accountTable)->insert($aData);
+        if(!$rs) return json_encode(['result'=>0]);
+        //插入stock_detail表
+        $stockDetail['goods_id']=$postData['stock']['goods_id'];
+        $stockDetail['inorder']=$postData['stock']['inorder'];
+        $stockDetail['store_id']=$postData['store_id'];
+        $stockDetail['Dstock']=(-1)*$stock['number'];
+        $stockDetail['stock']=0;
+        $stockDetail['Dsum']=(-1)*$sale['sum'];
+        $stockDetail['sum']=0;
+        $stockDetail['time']=$time;
+        $stockDetail['remark']=$remark;
+        $stockDetail['type']='sale';
+        $stockDetail['user']=$this->user;
+        $stockDetailTable=$this->mdb.'.stock_detail';
+        $rs=Db::table($stockDetailTable)->insert($stockDetail);
+        if(!$rs) return json_encode(['result'=>0]);
+
+        //查询是否加入inorder
+        $remark="由商品结转生成:数量:".$postData['number'];
+        $pWhere['goods_id']=$postData['stock']['goods_id'];
+        $pWhere['store_id']=$postData['store_id'];
+        $rs=Db::table($stockTable)->where($pWhere)->field('inorder')->order('stock_id desc,inorder desc')->find();
+        $inorder=$rs['inorder'];
+        //purchase表
+        $purchaseTable=$this->mdb.'.purchase';
+        $pData['sum']=$sale['sum'];
+        $pData['supply_id']=0;
+        $pData['inorder']=$inorder;
+        $pData['time']=$time;
+        $pData['user']=$this->user;
+        $pData['summary']=$remark;
+        $pData['type']='carry';
+        $purchase_id=Db::table($purchaseTable)->insertGetId($pData);
+        Db::table($purchaseTable)->delete($purchase_id);
+        if(!$purchase_id) return json_encode(['result'=>0]);
+        //purchase_detail
+        $pdetail['goods_id']=$postData['stock']['goods_id'];
+        $pdetail['number']=$postData['number'];
+        $pdetail['price']=$sDetail['price'];
+        $pdetail['sum']=$sale['sum'];
+        $pdetail['store_id']=$postData['store_id'];
+        $pdetail['unit_id']=$postData['stock']['unit_id'];
+        $pdetail['purchase_id']=$purchase_id;
+        $purchaseDetailTable=$this->mdb.'.purchase_detail';
+        $rs=Db::table($purchaseDetailTable)->insert($pdetail);
+        if(!$rs) return json_encode(['result'=>0]);
+        //stock_detail
+        unset($where);
+        $where['goods_id']=$stockDetail['goods_id']=$postData['stock']['goods_id'];
+        $where['inorder']=$stockDetail['inorder']=$inorder;
+        $where['store_id']=$stockDetail['store_id']=$postData['store_id'];
+        $stock=Db::table($stockTable)->where($where)->find();
+        $stockDetail['Dstock']=$postData['number'];
+        $stockDetail['stock']=$stock['number']+$stockDetail['Dstock'];
+        $stockDetail['Dsum']=$sale['sum'];
+        $stockDetail['sum']=$stock['sum']+$stockDetail['Dsum'];
+        $stockDetail['time']=$time;
+        $stockDetail['remark']=$remark;
+        $stockDetail['type']='purchase';
+        $stockDetail['user']=$this->user;
+        $stockDetailTable=$this->mdb.'.stock_detail';
+        $rs=Db::table($stockDetailTable)->insert($stockDetail);
+        if(!$rs) return json_encode(['result'=>0]);
+        return json_encode(['result'=>1]);
+
     }
 
 }
