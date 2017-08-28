@@ -77,7 +77,7 @@ app.controller('MemberUpdateController',function ($scope,myhttp) {
 app.controller('SaleController',function ($scope,myhttp,toaster,ngDialog,$state,$timeout,$localStorage) {
     $scope.members=[];
     $scope.pay={bank:{}};
-    $scope.data={member:[]};      //此处必须定义成数组，angularjs's bug
+    $scope.data={member:$localStorage['member']};      //此处必须定义成数组，angularjs's bug
     $scope.rows=new Array(5);
     $scope.check=false;
     $scope.$on('ngRepeatFinished', function() {
@@ -602,5 +602,63 @@ app.controller('cfPrintController',function ($modalInstance,$scope,myhttp,$rootS
 app.controller('remarkController',function ($modalInstance,$scope) {
     $scope.ok=function () {
         $modalInstance.close($scope.remark);
+    }
+});
+app.controller('SaleTabController',function ($scope,myhttp,toaster,$localStorage,$timeout) {
+    $scope.mytabs=[];
+    var tab={};
+    $scope.query_member=function (search) {
+        if(search!='')
+            myhttp.getData('/index/sale/memberSearch', 'GET', {page: 1, search: search})
+                .then(function (res) {
+                    $scope.members = res.data.member;
+                });
+    };
+    $scope.memberDialog=function() {
+        ngDialog.open({
+            template: 'admin/sale/memberUpdate.html',
+            className: 'ngdialog-theme-default' ,
+            showClose: false,
+            controller:'MemberUpdateController',
+            preCloseCallback: function(value){
+                switch(value)
+                {
+                    case 3:
+                        toaster.pop('info','该客户姓名已经存在，请核对...');
+                        break;
+                    case 0:
+                        toaster.pop('error','客户更新失败，请刷新后再试!');
+                }
+            }
+        });
+    };
+    $scope.getCredit=function (item) {
+        myhttp.getData('/index/sale/getMemberCredit','GET',{'member_id':item.member_id})
+            .then(function (res) {
+                $scope.credit=res.data.credit;
+                angular.forEach($scope.mytabs,function (tab) {
+                    if(tab.member_id==item.member_id){
+                        tab.active=true;
+                        return false;
+                    }
+                });
+                tab={
+                    title:item.member_name,
+                    active:true,
+                    member_id:item.member_id
+                };
+
+                $localStorage['member']=item;
+                $scope.mytabs.push(tab);
+                //angular.element('#saleTable tbody tr td:eq(1) ').find('input').focus();
+            });
+    };
+    $scope.printCredit=function (list) {
+        var url = $state.href('print.saleCredit',{member_id:list.member_id,member_name:list.member_name});
+        // window.open('admin/sale/printCredit.html','_blank');
+        window.open(url,'_blank');
+    };
+    $scope.closeTab=function (index) {
+        $scope.mytabs.splice(index,1);
     }
 });

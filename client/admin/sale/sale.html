@@ -1,0 +1,31 @@
+<div ng-controller="SaleTabController">
+    <div class="row wrapper">
+        <div class="col-sm-4">
+            <label style="padding-left: 2%"> 客户:</label>
+            <ui-select ng-model="data.member" on-select="getCredit($item)"  class="inline" style="width:160px" id="member">
+                <ui-select-match >{{$select.selected.member_name}}</ui-select-match>
+                <ui-select-choices repeat="member in members"
+                                   refresh="query_member($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="member.member_name"></div>
+                </ui-select-choices>
+            </ui-select>&nbsp;
+            <a style="color: orangered" ng-if="credit" ng-click="printCredit(data.member)">欠款：{{credit|currency:'￥'}}</a>
+        </div>
+        <div class="col-sm-2 m-b-xs pull-right">
+            <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="memberDialog()"><i class="fa fa-plus"></i>新增客户</button>
+        </div>
+    </div>
+<tabset class="tab-container" ng-show="mytabs.length>0">
+    <tab ng-repeat="tab in mytabs" active="tab.active" ng-dblclick="closeTab($index)">
+        <tab-heading>
+            {{tab.title}}
+        </tab-heading>
+        <div ng-include="'admin/sale/template.html'"></div>
+        </p>
+    </tab>
+</tabset>
+</div>
+<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-center', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->

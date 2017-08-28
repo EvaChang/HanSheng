@@ -277,6 +277,20 @@ app
                       label: '新销售单'
                   }
               })
+              .state('app.sale.sale',{
+                  url:'/sale',
+                  templateUrl:'admin/sale/sale.html',
+                  resolve: {
+                      deps: ['$ocLazyLoad',
+                          function( $ocLazyLoad ){
+                              return $ocLazyLoad.load('js/py.js');
+                          }]
+                  },
+                  ncyBreadcrumb: {
+                      parent:'app.dashboard',
+                      label: '新销售单'
+                  }
+              })
               .state('app.sale.list',{
                   url:'/list?page&search&sdate&edate',
                   templateUrl:'admin/sale/list.html',

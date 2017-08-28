@@ -311,7 +311,7 @@ class Stock
         $stockDetail['store_id']=$postData['store_id'];
         $stockDetail['Dstock']=(-1)*$postData['out']['number'];
         $stockDetail['stock']=$stock['number']+$stockDetail['Dstock'];
-        $stockDetail['Dsum']=(-1)*$aData['income'];
+        $stockDetail['Dsum']=(-1)*$aData['cost'];
         $stockDetail['sum']=$stock['sum']+$stockDetail['Dsum'];
         $stockDetail['time']=$time;
         $stockDetail['remark']=$remark;
