@@ -217,10 +217,8 @@
   }])
   ; 
   app.controller('TypeaheadDemoCtrl', ['$scope', '$http', function($scope, $http) {
-    $scope.selected = undefined;
-    $scope.states = ['abc','bcd','cde'];
-    // Any function returning a promise object can be used to load values asynchronously
-    $scope.getLocation = function(val) {
+    $scope.weight=888.8;
+   /* $scope.getLocation = function(val) {
       return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           address: val,
@@ -233,7 +231,7 @@
         });
         return addresses;
       });
-    };
+    };*/
   }])
   ; 
   app.controller('DatepickerDemoCtrl', ['$scope', function($scope) {

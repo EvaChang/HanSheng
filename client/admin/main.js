@@ -10,7 +10,9 @@ angular.module('app')
       isIE && angular.element($window.document.body).addClass('ie');
       isSmartDevice( $window ) && angular.element($window.document.body).addClass('smart');
       $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+
       $scope.app = {
+         // weight:888.8,
 		host: "/hx/tp5/public/index.php",
         name: 'iHanc',
         version: '1.0.0',

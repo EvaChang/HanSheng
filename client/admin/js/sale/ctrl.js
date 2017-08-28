@@ -545,7 +545,7 @@ app.controller('saleCreditDetailController',function ($scope,myhttp,$modalInstan
                     //console.log(res.data);
                     $scope.check=false;
                     $modalInstance.close(res.data.result);
-                })
+                });
 
         //}
     };
@@ -604,7 +604,7 @@ app.controller('remarkController',function ($modalInstance,$scope) {
         $modalInstance.close($scope.remark);
     }
 });
-app.controller('SaleTabController',function ($scope,myhttp,toaster,$localStorage,$timeout) {
+app.controller('SaleTabController',function ($scope,myhttp,toaster,$localStorage,ngDialog) {
     $scope.mytabs=[];
     var tab={};
     $scope.query_member=function (search) {
@@ -660,5 +660,6 @@ app.controller('SaleTabController',function ($scope,myhttp,toaster,$localStorage
     };
     $scope.closeTab=function (index) {
         $scope.mytabs.splice(index,1);
+        //alert(angular.element('#weight').val());
     }
 });
